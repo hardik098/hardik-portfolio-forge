@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Github, Linkedin, MapPin, Phone, Code, Terminal } from 'lucide-react';
@@ -18,7 +19,7 @@ const Hero = () => {
       y: 0,
       transition: {
         duration: 0.8,
-        ease: [0.25, 0.1, 0.25, 1]
+        ease: "easeOut"
       }
     }
   };
@@ -30,7 +31,7 @@ const Hero = () => {
       scale: 1,
       transition: {
         duration: 1,
-        ease: [0.25, 0.1, 0.25, 1],
+        ease: "easeOut",
         delay: 0.5
       }
     }
@@ -42,7 +43,7 @@ const Hero = () => {
       width: "auto",
       transition: {
         duration: 2,
-        ease: [0.4, 0, 0.2, 1]
+        ease: "easeInOut"
       }
     }
   };
