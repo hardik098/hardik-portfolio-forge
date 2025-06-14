@@ -1,6 +1,7 @@
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import LoadingScreen from '../components/LoadingScreen';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
 import About from '../components/About';
@@ -12,8 +13,23 @@ import ThreeBackground from '../components/ThreeBackground';
 import AnimatedBackground from '../components/AnimatedBackground';
 
 const Index = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate loading time
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 3500); // 3.5 seconds loading
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) {
+    return <LoadingScreen />;
+  }
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-red-950 relative overflow-x-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-green-950 relative overflow-x-hidden">
       <ThreeBackground />
       <AnimatedBackground />
       

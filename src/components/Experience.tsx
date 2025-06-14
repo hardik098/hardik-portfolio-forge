@@ -10,7 +10,7 @@ const Experience = () => {
       type: "Onsite",
       duration: "June 2024 - Present",
       current: true,
-      logo: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=100&h=100&fit=crop&crop=center"
+      logo: "/lovable-uploads/dd03c944-c23c-4f29-bde4-344101cf6bfb.png"
     },
     {
       company: "Sarvadhi Solutions Pvt. Ltd.",
@@ -18,7 +18,7 @@ const Experience = () => {
       type: "Onsite", 
       duration: "January 2024 - June 2024",
       current: false,
-      logo: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=100&h=100&fit=crop&crop=center"
+      logo: "/lovable-uploads/141648ab-a447-4a09-8077-34f047a51327.png"
     }
   ];
 
@@ -29,48 +29,68 @@ const Experience = () => {
           Professional <span className="bg-gradient-to-r from-emerald-400 to-cyan-500 bg-clip-text text-transparent">Experience</span>
         </h2>
         
-        <div className="flex flex-col items-center space-y-12">
-          {experiences.map((exp, index) => (
-            <div 
-              key={index}
-              className={`flex flex-col items-center text-center bg-white/5 backdrop-blur-sm border border-emerald-500/20 rounded-2xl p-8 hover:bg-white/10 hover:border-emerald-500/30 transition-all duration-300 relative group animate-fade-in max-w-md w-full`}
-              style={{ animationDelay: `${(index + 1) * 200}ms` }}
-            >
-              {exp.current && (
-                <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                  <span className="bg-gradient-to-r from-emerald-400 to-cyan-500 text-slate-900 px-4 py-1 rounded-full text-sm font-semibold shadow-lg">
-                    Current
-                  </span>
+        {/* Timeline container */}
+        <div className="relative">
+          {/* Vertical timeline line */}
+          <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-emerald-400 via-cyan-500 to-green-400 opacity-30"></div>
+          
+          <div className="space-y-12">
+            {experiences.map((exp, index) => (
+              <div 
+                key={index}
+                className={`relative flex items-center ${index % 2 === 0 ? 'justify-start' : 'justify-end'}`}
+                style={{ animationDelay: `${(index + 1) * 300}ms` }}
+              >
+                {/* Timeline dot */}
+                <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-gradient-to-r from-emerald-400 to-cyan-500 rounded-full border-4 border-black z-10 animate-pulse"></div>
+                
+                {/* Experience card */}
+                <div className={`w-5/12 ${index % 2 === 0 ? 'pr-8' : 'pl-8'} animate-fade-in`}>
+                  <div className="bg-white/5 backdrop-blur-sm border border-emerald-500/20 rounded-2xl p-6 hover:bg-white/10 hover:border-emerald-500/30 transition-all duration-300 relative group">
+                    {exp.current && (
+                      <div className="absolute -top-3 right-4">
+                        <span className="bg-gradient-to-r from-emerald-400 to-cyan-500 text-black px-3 py-1 rounded-full text-xs font-semibold shadow-lg">
+                          Current
+                        </span>
+                      </div>
+                    )}
+                    
+                    {/* Company logo */}
+                    <div className="flex justify-center mb-4">
+                      <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-emerald-500/30 group-hover:border-emerald-500/50 transition-colors bg-white p-2">
+                        <img 
+                          src={exp.logo} 
+                          alt={`${exp.company} logo`}
+                          className="w-full h-full object-contain"
+                        />
+                      </div>
+                    </div>
+                    
+                    <h3 className="text-lg font-bold text-white mb-2 text-center group-hover:text-emerald-400 transition-colors">
+                      {exp.company}
+                    </h3>
+                    <p className="text-emerald-400 font-semibold text-center mb-4">{exp.position}</p>
+                    
+                    <div className="flex flex-col items-center gap-2">
+                      <div className="flex items-center gap-2 text-gray-300 text-sm">
+                        <Calendar size={14} className="text-cyan-400" />
+                        <span>{exp.duration}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <MapPin size={14} className="text-emerald-400" />
+                        <span className="bg-emerald-500/20 text-emerald-400 px-2 py-1 rounded-full text-xs">
+                          {exp.type}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              )}
-              
-              <div className="w-24 h-24 rounded-full overflow-hidden mb-6 border-4 border-emerald-500/30 group-hover:border-emerald-500/50 transition-colors">
-                <img 
-                  src={exp.logo} 
-                  alt={`${exp.company} logo`}
-                  className="w-full h-full object-cover"
-                />
+                
+                {/* Timeline connector line */}
+                <div className={`absolute top-1/2 w-8 h-0.5 bg-gradient-to-r from-emerald-400 to-cyan-500 opacity-50 ${index % 2 === 0 ? 'left-1/2 ml-3' : 'right-1/2 mr-3'}`}></div>
               </div>
-              
-              <h3 className="text-xl md:text-2xl font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors">
-                {exp.company}
-              </h3>
-              <p className="text-emerald-400 font-semibold text-lg mb-4">{exp.position}</p>
-              
-              <div className="flex flex-col items-center gap-2">
-                <div className="flex items-center gap-2 text-gray-300 font-medium">
-                  <Calendar size={16} className="text-cyan-400" />
-                  <span>{exp.duration}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <MapPin size={16} className="text-emerald-400" />
-                  <span className="inline-block bg-emerald-500/20 text-emerald-400 px-3 py-1 rounded-full text-sm">
-                    {exp.type}
-                  </span>
-                </div>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>
