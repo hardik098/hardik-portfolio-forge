@@ -4,12 +4,12 @@ import React from 'react';
 const AnimatedBackground = () => {
   return (
     <div className="fixed inset-0 -z-20 overflow-hidden">
-      {/* Matrix-like code rain */}
-      <div className="absolute inset-0 opacity-20">
-        {[...Array(30)].map((_, i) => (
+      {/* Enhanced Matrix-like code rain */}
+      <div className="absolute inset-0 opacity-10">
+        {[...Array(50)].map((_, i) => (
           <div
             key={i}
-            className="absolute text-red-500 text-xs font-mono animate-pulse"
+            className="absolute text-green-400 text-sm font-mono animate-pulse"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
@@ -17,21 +17,21 @@ const AnimatedBackground = () => {
               animationDuration: `${3 + Math.random() * 4}s`
             }}
           >
-            {['const', 'function', 'return', 'import', 'export', 'async', 'await', 'class', 'interface'][Math.floor(Math.random() * 9)]}
+            {['01010', '11001', 'DEBUG', 'EXEC', 'INIT', 'LOAD', 'RUN', 'END'][Math.floor(Math.random() * 8)]}
           </div>
         ))}
       </div>
 
-      {/* Dark lightning effects */}
-      <div className="absolute top-1/4 left-1/4 w-1 h-96 bg-gradient-to-b from-transparent via-red-600 to-transparent opacity-40 animate-pulse"></div>
-      <div className="absolute top-1/3 right-1/3 w-1 h-64 bg-gradient-to-b from-transparent via-green-600 to-transparent opacity-30 animate-pulse" style={{ animationDelay: '1s' }}></div>
-      <div className="absolute bottom-1/4 left-1/3 w-1 h-48 bg-gradient-to-b from-transparent via-blue-800 to-transparent opacity-35 animate-pulse" style={{ animationDelay: '2s' }}></div>
+      {/* Animated lightning effects */}
+      <div className="absolute top-1/4 left-1/4 w-1 h-96 bg-gradient-to-b from-transparent via-green-400 to-transparent opacity-30 animate-pulse"></div>
+      <div className="absolute top-1/3 right-1/3 w-1 h-64 bg-gradient-to-b from-transparent via-blue-400 to-transparent opacity-25 animate-pulse" style={{ animationDelay: '1s' }}></div>
+      <div className="absolute bottom-1/4 left-1/3 w-1 h-48 bg-gradient-to-b from-transparent via-cyan-400 to-transparent opacity-35 animate-pulse" style={{ animationDelay: '2s' }}></div>
 
-      {/* Dark floating particles */}
-      {[...Array(20)].map((_, i) => (
+      {/* Enhanced floating particles */}
+      {[...Array(30)].map((_, i) => (
         <div
           key={i}
-          className="absolute w-2 h-2 bg-red-600 rounded-full animate-ping opacity-60"
+          className="absolute w-1 h-1 bg-blue-400 rounded-full animate-ping opacity-40"
           style={{
             left: `${Math.random() * 100}%`,
             top: `${Math.random() * 100}%`,
@@ -41,17 +41,18 @@ const AnimatedBackground = () => {
         />
       ))}
 
-      {/* Dark code snippets floating */}
-      <div className="absolute top-20 left-10 opacity-10 font-mono text-sm text-red-400 animate-pulse">
-        {`function createApp() {\n  return <Portfolio />;\n}`}
+      {/* Floating code snippets */}
+      <div className="absolute top-16 left-8 opacity-5 font-mono text-xs text-green-300 animate-pulse">
+        {`import { useState } from 'react';\nconst [data, setData] = useState();`}
       </div>
-      <div className="absolute bottom-40 right-20 opacity-10 font-mono text-sm text-green-600 animate-pulse" style={{ animationDelay: '2s' }}>
-        {`const skills = [\n  'React', 'Node.js',\n  '.NET', 'PostgreSQL'\n];`}
+      <div className="absolute bottom-32 right-16 opacity-5 font-mono text-xs text-blue-300 animate-pulse" style={{ animationDelay: '2s' }}>
+        {`const response = await fetch('/api');\nreturn response.json();`}
       </div>
       
-      {/* Additional dark geometric shapes */}
-      <div className="absolute top-1/2 left-1/2 w-20 h-20 border-2 border-red-800 rotate-45 opacity-20 animate-spin" style={{ animationDuration: '20s' }}></div>
-      <div className="absolute bottom-1/3 right-1/4 w-16 h-16 border-2 border-green-700 rounded-full opacity-25 animate-pulse"></div>
+      {/* Geometric shapes */}
+      <div className="absolute top-1/2 left-1/2 w-24 h-24 border border-green-600 rotate-45 opacity-10 animate-spin" style={{ animationDuration: '20s' }}></div>
+      <div className="absolute bottom-1/3 right-1/4 w-20 h-20 border border-blue-600 rounded-full opacity-15 animate-pulse"></div>
+      <div className="absolute top-1/4 right-1/5 w-16 h-16 border border-cyan-500 opacity-12 animate-bounce" style={{ animationDuration: '3s' }}></div>
     </div>
   );
 };

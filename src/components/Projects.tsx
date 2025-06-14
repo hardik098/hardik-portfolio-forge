@@ -15,8 +15,8 @@ const Projects = () => {
         "Image management with Cloudinary integration",
         "Automated email services with NodeMailer"
       ],
-      image: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=600&h=400&fit=crop",
-      gradient: "from-yellow-600 to-yellow-800"
+      image: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800&h=600&fit=crop&crop=center",
+      gradient: "from-yellow-600 to-amber-800"
     },
     {
       title: "Unnati Mechanic - Loyalty Program",
@@ -28,8 +28,8 @@ const Projects = () => {
         "Cashfree payment gateway integration",
         "Real-time analytics with Power BI dashboards"
       ],
-      image: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=600&h=400&fit=crop",
-      gradient: "from-blue-600 to-purple-800"
+      image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=600&fit=crop&crop=center",
+      gradient: "from-blue-600 to-indigo-800"
     },
     {
       title: "Hydroponics IoT System - IIT Bombay",
@@ -42,7 +42,7 @@ const Projects = () => {
         "Proactive plant care guidance"
       ],
       duration: "November 2022 - May 2023",
-      image: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=600&h=400&fit=crop",
+      image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&h=600&fit=crop&crop=center",
       gradient: "from-green-600 to-emerald-800"
     }
   ];
@@ -71,7 +71,7 @@ const Projects = () => {
               viewport={{ once: true }}
               whileHover={{ scale: 1.02 }}
             >
-              <div className="relative h-48 overflow-hidden">
+              <div className="relative h-56 overflow-hidden">
                 <img 
                   src={project.image} 
                   alt={project.title}

@@ -17,7 +17,15 @@ const Contact = () => {
             I'd love to hear from you.
           </p>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <a 
+              href="mailto:hardikanawala07@gmail.com"
+              className="flex items-center justify-center gap-3 bg-white/5 border border-emerald-500/20 rounded-xl p-4 hover:bg-emerald-500/10 hover:border-emerald-500/40 transition-all duration-300 group"
+            >
+              <Mail size={20} className="text-emerald-400 group-hover:scale-110 transition-transform" />
+              <span className="text-gray-300 group-hover:text-white text-sm">hardikanawala07@gmail.com</span>
+            </a>
+            
             <a 
               href="tel:+919725016245"
               className="flex items-center justify-center gap-3 bg-white/5 border border-emerald-500/20 rounded-xl p-4 hover:bg-emerald-500/10 hover:border-emerald-500/40 transition-all duration-300 group"
