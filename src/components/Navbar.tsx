@@ -68,35 +68,40 @@ const Navbar = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
       
-      // Detect active section with improved logic
+      // Get all sections
       const sections = ['home', 'about', 'experience', 'projects', 'skills', 'contact'];
-      const scrollPosition = window.scrollY + 150; // Offset for better detection
+      const scrollPosition = window.scrollY + 100; // Offset for navbar height
       
-      // Check if we're at the top of the page
-      if (window.scrollY < 100) {
+      // If at top of page, always show home as active
+      if (window.scrollY < 50) {
         setActiveSection('home');
         return;
       }
+
+      let currentSection = 'home';
       
-      // Find the current section
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const element = document.getElementById(sections[i]);
+      // Check each section to find which one is currently in view
+      for (const sectionId of sections) {
+        const element = document.getElementById(sectionId);
         if (element) {
-          const elementTop = element.offsetTop;
-          const elementHeight = element.offsetHeight;
+          const rect = element.getBoundingClientRect();
+          const elementTop = window.scrollY + rect.top;
+          const elementBottom = elementTop + element.offsetHeight;
           
-          // Check if we're in this section's range
-          if (scrollPosition >= elementTop && scrollPosition < elementTop + elementHeight) {
-            setActiveSection(sections[i]);
-            break;
-          }
-          // If we're past the last section, set it as active
-          if (i === sections.length - 1 && scrollPosition >= elementTop) {
-            setActiveSection(sections[i]);
+          // Check if the section is currently visible in viewport
+          if (scrollPosition >= elementTop && scrollPosition < elementBottom) {
+            currentSection = sectionId;
             break;
           }
         }
       }
+      
+      // If we're at the bottom of the page, make sure contact is active
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
+        currentSection = 'contact';
+      }
+      
+      setActiveSection(currentSection);
     };
     
     window.addEventListener('scroll', handleScroll);
@@ -105,9 +110,16 @@ const Navbar = () => {
   }, []);
 
   const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
+    const sectionId = href.substring(1);
+    const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      // Immediately set active section for instant feedback
+      setActiveSection(sectionId);
+      
+      // Smooth scroll to section
+      const yOffset = -80; // Account for navbar height
+      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
     }
     setIsMobileMenuOpen(false);
   };
