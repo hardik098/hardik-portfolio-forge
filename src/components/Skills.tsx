@@ -1,9 +1,57 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Code, Database, Cloud, Settings } from 'lucide-react';
+import { 
+  Code, 
+  Database, 
+  Cloud, 
+  Settings,
+  Code2,
+  FileCode,
+  Braces,
+  Palette,
+  Zap,
+  Wind,
+  Server,
+  Globe,
+  Layers,
+  GitBranch,
+  Monitor,
+  Terminal,
+  Mail,
+  Clock,
+  Users
+} from 'lucide-react';
 
 const Skills = () => {
+  // Icon mapping for individual skills
+  const skillIcons: Record<string, any> = {
+    "React.js": Code2,
+    "TypeScript": FileCode,
+    "HTML5": Code,
+    "CSS3": Palette,
+    "JavaScript": Braces,
+    "Tailwind CSS": Wind,
+    ".NET Core": Layers,
+    "C#": Code2,
+    "Node.js": Server,
+    "Express.js": Zap,
+    "RESTful APIs": Globe,
+    "GraphQL": Database,
+    "SQL Server": Database,
+    "MongoDB": Database,
+    "PostgreSQL": Database,
+    "Azure": Cloud,
+    "AWS": Cloud,
+    "Docker": Layers,
+    "Git": GitBranch,
+    "Visual Studio": Monitor,
+    "VS Code": Terminal,
+    "Postman": Mail,
+    "Jenkins": Settings,
+    "Agile": Users
+  };
+
   const skillCategories = [
     {
       title: "Frontend Development",
@@ -84,25 +132,31 @@ const Skills = () => {
                 {category.title}
               </h3>
               <div className="grid grid-cols-2 gap-4">
-                {category.skills.map((skill, skillIndex) => (
-                  <motion.div
-                    key={skillIndex}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    whileHover={{ 
-                      scale: 1.05,
-                      y: -2
-                    }}
-                    transition={{ 
-                      duration: 0.3, 
-                      delay: (categoryIndex * 0.1) + (skillIndex * 0.05)
-                    }}
-                    viewport={{ once: true }}
-                    className="bg-slate-800/50 backdrop-blur-sm px-4 py-3 rounded-lg border border-slate-700/50 text-center hover:border-cyan-400/30 transition-all duration-300 hover:bg-slate-700/50 cursor-pointer"
-                  >
-                    <span className="text-gray-300 font-medium">{skill}</span>
-                  </motion.div>
-                ))}
+                {category.skills.map((skill, skillIndex) => {
+                  const SkillIcon = skillIcons[skill] || Code;
+                  return (
+                    <motion.div
+                      key={skillIndex}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      whileHover={{ 
+                        scale: 1.05,
+                        y: -2
+                      }}
+                      transition={{ 
+                        duration: 0.3, 
+                        delay: (categoryIndex * 0.1) + (skillIndex * 0.05)
+                      }}
+                      viewport={{ once: true }}
+                      className="bg-slate-800/50 backdrop-blur-sm px-4 py-3 rounded-lg border border-slate-700/50 hover:border-cyan-400/30 transition-all duration-300 hover:bg-slate-700/50 cursor-pointer"
+                    >
+                      <div className="flex items-center justify-center gap-2">
+                        <SkillIcon className="w-4 h-4 text-cyan-400" />
+                        <span className="text-gray-300 font-medium text-sm">{skill}</span>
+                      </div>
+                    </motion.div>
+                  );
+                })}
               </div>
             </motion.div>
           ))}
