@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Calendar, MapPin } from 'lucide-react';
 
@@ -18,7 +17,7 @@ const Experience = () => {
       type: "Onsite", 
       duration: "January 2024 - June 2024",
       current: false,
-      logo: "/lovable-uploads/141648ab-a447-4a09-8077-34f047a51327.png"
+      logo: "/lovable-uploads/85f04446-3e61-43fe-8a09-bd4885f7674a.png"
     }
   ];
 
