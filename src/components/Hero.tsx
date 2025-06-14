@@ -1,76 +1,161 @@
 
 import React from 'react';
-import { Github, Linkedin, MapPin, Phone } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Github, Linkedin, MapPin, Phone, Code, Terminal } from 'lucide-react';
 
 const Hero = () => {
+  const codeSnippet = `const developer = {
+  name: "Hardik Anawala",
+  role: "Full-Stack Developer",
+  skills: [".NET", "React", "Node.js"],
+  passion: "Creating innovative solutions"
+};`;
+
   return (
     <section id="home" className="min-h-screen flex items-center justify-center px-4 relative overflow-hidden pt-16">
-      {/* Background Animation */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-emerald-500/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl animate-pulse delay-500"></div>
-      </div>
-      
-      <div className="max-w-6xl mx-auto text-center z-10 relative">
-        <div className="mb-8 animate-fade-in">
-          <div className="w-32 h-32 mx-auto mb-6 relative group">
-            <div className="w-full h-full bg-gradient-to-br from-emerald-400 to-cyan-600 rounded-full flex items-center justify-center text-white text-4xl font-bold shadow-2xl group-hover:scale-105 transition-transform duration-300">
-              HA
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center z-10 relative">
+        {/* Left side - Text content */}
+        <motion.div 
+          className="text-left"
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1 }}
+        >
+          <motion.div 
+            className="flex items-center gap-3 mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+          >
+            <Terminal className="text-emerald-400" size={32} />
+            <span className="text-emerald-400 font-mono text-lg">~/portfolio</span>
+          </motion.div>
+          
+          <motion.h1 
+            className="text-5xl md:text-7xl font-bold text-white mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+          >
+            <span className="bg-gradient-to-r from-emerald-400 via-cyan-500 to-purple-500 bg-clip-text text-transparent">
+              Hardik Anawala
+            </span>
+          </motion.h1>
+          
+          <motion.div 
+            className="flex items-center gap-3 mb-8"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6 }}
+          >
+            <Code className="text-cyan-400" size={24} />
+            <p className="text-xl md:text-2xl text-gray-300 font-mono">
+              Full-Stack Software Developer
+            </p>
+          </motion.div>
+          
+          <motion.p 
+            className="text-lg text-gray-400 mb-8 max-w-2xl leading-relaxed"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8 }}
+          >
+            Crafting scalable, high-performance software solutions with expertise in .NET technologies, 
+            React.js, and modern development practices. Passionate about creating innovative solutions 
+            that drive real-world impact.
+          </motion.p>
+          
+          <motion.div 
+            className="flex items-center gap-2 text-gray-400 mb-8"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1 }}
+          >
+            <MapPin size={18} className="text-emerald-400" />
+            <span>Surat, Gujarat, India</span>
+          </motion.div>
+          
+          <motion.div 
+            className="flex flex-wrap gap-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.2 }}
+          >
+            <a 
+              href="https://www.linkedin.com/in/hardikanawala/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-3 rounded-lg text-white hover:shadow-lg hover:shadow-blue-500/30 transition-all duration-300 hover:scale-105"
+            >
+              <Linkedin size={20} />
+              <span>LinkedIn</span>
+            </a>
+            <a 
+              href="https://github.com/hardik098" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 bg-gradient-to-r from-gray-700 to-gray-800 px-6 py-3 rounded-lg text-white hover:shadow-lg hover:shadow-gray-500/30 transition-all duration-300 hover:scale-105"
+            >
+              <Github size={20} />
+              <span>GitHub</span>
+            </a>
+            <a 
+              href="tel:+919725016245"
+              className="flex items-center gap-2 bg-gradient-to-r from-emerald-500 to-cyan-600 px-6 py-3 rounded-lg text-white hover:shadow-lg hover:shadow-emerald-500/30 transition-all duration-300 hover:scale-105"
+            >
+              <Phone size={20} />
+              <span>Contact</span>
+            </a>
+          </motion.div>
+        </motion.div>
+
+        {/* Right side - Code snippet */}
+        <motion.div 
+          className="lg:flex justify-center hidden"
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1, delay: 0.5 }}
+        >
+          <div className="bg-gray-900/80 backdrop-blur-sm border border-emerald-500/30 rounded-xl p-6 font-mono text-sm max-w-md hover:border-emerald-500/50 transition-colors">
+            <div className="flex items-center gap-2 mb-4">
+              <div className="w-3 h-3 rounded-full bg-red-500"></div>
+              <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+              <div className="w-3 h-3 rounded-full bg-green-500"></div>
+              <span className="text-gray-400 ml-2">developer.js</span>
             </div>
-            <div className="absolute inset-0 bg-gradient-to-br from-emerald-400 to-cyan-600 rounded-full blur-md opacity-50 animate-pulse group-hover:opacity-70 transition-opacity duration-300"></div>
+            <motion.pre 
+              className="text-emerald-400 leading-6"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1, duration: 2 }}
+            >
+              <code>{codeSnippet}</code>
+            </motion.pre>
           </div>
-        </div>
-        
-        <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 animate-fade-in delay-200">
-          <span className="bg-gradient-to-r from-emerald-400 via-cyan-500 to-indigo-500 bg-clip-text text-transparent">
-            Hardik Anawala
-          </span>
-        </h1>
-        
-        <p className="text-xl md:text-2xl text-gray-300 mb-8 animate-fade-in delay-300">
-          Full-Stack Software Developer
-        </p>
-        
-        <p className="text-lg text-gray-400 mb-12 max-w-3xl mx-auto animate-fade-in delay-400 leading-relaxed">
-          Crafting scalable, high-performance software solutions with expertise in .NET technologies, 
-          React.js, and modern development practices. Passionate about creating innovative solutions 
-          that drive real-world impact.
-        </p>
-        
-        <div className="flex items-center justify-center gap-2 text-gray-400 mb-8 animate-fade-in delay-500">
-          <MapPin size={18} className="text-emerald-400" />
-          <span>Surat, Gujarat, India</span>
-        </div>
-        
-        <div className="flex flex-wrap justify-center gap-4 animate-fade-in delay-600">
-          <a 
-            href="https://www.linkedin.com/in/hardikanawala/" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 px-6 py-3 rounded-full text-white hover:bg-emerald-500/20 hover:border-emerald-500/50 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-emerald-500/20"
-          >
-            <Linkedin size={20} />
-            <span>LinkedIn</span>
-          </a>
-          <a 
-            href="https://github.com/hardik098" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 px-6 py-3 rounded-full text-white hover:bg-slate-500/20 hover:border-slate-500/50 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-slate-500/20"
-          >
-            <Github size={20} />
-            <span>GitHub</span>
-          </a>
-          <a 
-            href="tel:+919725016245"
-            className="flex items-center gap-2 bg-gradient-to-r from-emerald-500 to-cyan-600 px-6 py-3 rounded-full text-white hover:shadow-lg hover:shadow-emerald-500/30 transition-all duration-300 hover:scale-105"
-          >
-            <Phone size={20} />
-            <span>Contact</span>
-          </a>
-        </div>
+        </motion.div>
       </div>
+
+      {/* Floating elements */}
+      <motion.div 
+        className="absolute top-20 right-20 w-20 h-20 border border-emerald-500/30 rounded-lg"
+        animate={{ 
+          rotate: 360,
+          scale: [1, 1.1, 1]
+        }}
+        transition={{ 
+          rotate: { duration: 20, repeat: Infinity, ease: "linear" },
+          scale: { duration: 2, repeat: Infinity }
+        }}
+      />
+      
+      <motion.div 
+        className="absolute bottom-40 left-20 w-16 h-16 border border-cyan-500/30 rounded-full"
+        animate={{ 
+          y: [-10, 10, -10],
+          opacity: [0.3, 0.8, 0.3]
+        }}
+        transition={{ duration: 3, repeat: Infinity }}
+      />
     </section>
   );
 };
