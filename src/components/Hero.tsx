@@ -11,41 +11,20 @@ const Hero = () => {
   passion: "Creating innovative solutions"
 };`;
 
-  // Animation variants for text
+  // Animation variants for text - simplified without transitions
   const titleVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut"
-      }
-    }
+    visible: { opacity: 1, y: 0 }
   };
 
   const codeVariants = {
     hidden: { opacity: 0, scale: 0.9 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: {
-        duration: 1,
-        ease: "easeOut",
-        delay: 0.5
-      }
-    }
+    visible: { opacity: 1, scale: 1 }
   };
 
   const typewriterVariants = {
     hidden: { width: 0 },
-    visible: {
-      width: "auto",
-      transition: {
-        duration: 2,
-        ease: "easeInOut"
-      }
-    }
+    visible: { width: "auto" }
   };
 
   return (
@@ -74,6 +53,7 @@ const Hero = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <motion.span 
               className="bg-gradient-to-r from-emerald-400 via-cyan-500 to-purple-500 bg-clip-text text-transparent inline-block overflow-hidden whitespace-nowrap"
@@ -81,6 +61,7 @@ const Hero = () => {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
+              transition={{ duration: 2, ease: "easeInOut" }}
             >
               Hardik Anawala
             </motion.span>
@@ -94,13 +75,29 @@ const Hero = () => {
           >
             <Code className="text-cyan-400" size={24} />
             <motion.p 
-              className="text-xl md:text-2xl text-transparent bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text font-mono"
+              className="text-xl md:text-2xl font-mono relative"
               variants={titleVariants}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
             >
-              Software Developer
+              <motion.span
+                className="bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent bg-300% animate-pulse"
+                animate={{
+                  backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "linear"
+                }}
+                style={{
+                  backgroundSize: '300% 100%'
+                }}
+              >
+                Software Developer
+              </motion.span>
             </motion.p>
           </motion.div>
           
@@ -172,6 +169,7 @@ const Hero = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
+            transition={{ duration: 1, ease: "easeOut", delay: 0.5 }}
           >
             <div className="flex items-center gap-2 mb-4">
               <div className="w-3 h-3 rounded-full bg-red-500"></div>
@@ -183,6 +181,7 @@ const Hero = () => {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
               >
                 developer.js
               </motion.span>
