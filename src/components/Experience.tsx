@@ -62,6 +62,7 @@ const Experience = () => {
                           src={exp.logo} 
                           alt={`${exp.company} logo`}
                           className="w-full h-full object-contain"
+                          key={exp.logo}
                         />
                       </div>
                     </div>
