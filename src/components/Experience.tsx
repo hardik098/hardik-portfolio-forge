@@ -9,7 +9,7 @@ const Experience = () => {
       type: "Onsite",
       duration: "June 2024 - Present",
       current: true,
-      logo: "/lovable-uploads/dd03c944-c23c-4f29-bde4-344101cf6bfb.png"
+      logo: "/lovable-uploads/bd594681-9591-4ad7-b9c5-43e11bea9bb6.png"
     },
     {
       company: "Sarvadhi Solutions Pvt. Ltd.",
