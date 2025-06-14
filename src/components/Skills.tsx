@@ -95,8 +95,7 @@ const Skills = () => {
                     }}
                     transition={{ 
                       duration: 0.3, 
-                      delay: (categoryIndex * 0.1) + (skillIndex * 0.05),
-                      hover: { type: "spring", stiffness: 300 }
+                      delay: (categoryIndex * 0.1) + (skillIndex * 0.05)
                     }}
                     viewport={{ once: true }}
                     className="bg-slate-800/50 backdrop-blur-sm px-4 py-3 rounded-lg border border-slate-700/50 text-center hover:border-cyan-400/30 transition-all duration-300 hover:bg-slate-700/50 cursor-pointer"
