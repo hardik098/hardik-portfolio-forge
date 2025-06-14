@@ -1,44 +1,50 @@
 
-import React, { useRef, useMemo } from 'react';
+import React, { useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Points, PointMaterial } from '@react-three/drei';
 import * as THREE from 'three';
 
 const StarField = () => {
-  const ref = useRef<THREE.Points>(null);
+  const pointsRef = useRef<THREE.Points>(null);
   
-  const [sphere] = useMemo(() => {
-    const sphere = new Float32Array(5000 * 3);
+  const positions = React.useMemo(() => {
+    const positions = new Float32Array(5000 * 3);
     for (let i = 0; i < 5000; i++) {
       const radius = Math.random() * 25 + 5;
       const theta = Math.random() * Math.PI * 2;
       const phi = Math.acos(Math.random() * 2 - 1);
       
-      sphere[i * 3] = radius * Math.sin(phi) * Math.cos(theta);
-      sphere[i * 3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
-      sphere[i * 3 + 2] = radius * Math.cos(phi);
+      positions[i * 3] = radius * Math.sin(phi) * Math.cos(theta);
+      positions[i * 3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
+      positions[i * 3 + 2] = radius * Math.cos(phi);
     }
-    return [sphere];
+    return positions;
   }, []);
 
   useFrame((state, delta) => {
-    if (ref.current) {
-      ref.current.rotation.x -= delta / 10;
-      ref.current.rotation.y -= delta / 15;
+    if (pointsRef.current) {
+      pointsRef.current.rotation.x -= delta / 10;
+      pointsRef.current.rotation.y -= delta / 15;
     }
   });
 
   return (
     <group rotation={[0, 0, Math.PI / 4]}>
-      <Points ref={ref} positions={sphere} stride={3} frustumCulled={false}>
-        <PointMaterial
-          transparent
+      <points ref={pointsRef}>
+        <bufferGeometry>
+          <bufferAttribute
+            attach="attributes-position"
+            count={positions.length / 3}
+            array={positions}
+            itemSize={3}
+          />
+        </bufferGeometry>
+        <pointsMaterial
           color="#00ffff"
           size={0.05}
           sizeAttenuation={true}
-          depthWrite={false}
+          transparent={true}
         />
-      </Points>
+      </points>
     </group>
   );
 };
