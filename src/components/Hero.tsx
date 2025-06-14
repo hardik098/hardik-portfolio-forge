@@ -177,11 +177,14 @@ const Hero = () => {
               <div className="w-3 h-3 rounded-full bg-green-500"></div>
               <motion.span 
                 className="text-gray-400 ml-2"
-                variants={titleVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
+                animate={{
+                  color: ['#9CA3AF', '#10B981', '#06B6D4', '#8B5CF6', '#EC4899', '#9CA3AF']
+                }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "linear"
+                }}
               >
                 developer.js
               </motion.span>

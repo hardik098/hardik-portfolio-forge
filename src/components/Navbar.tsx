@@ -23,42 +23,48 @@ const Navbar = () => {
       navHover: 'hover:text-emerald-400',
       underline: 'bg-emerald-400',
       border: 'border-emerald-500/20',
-      mobileHover: 'hover:text-emerald-400'
+      mobileHover: 'hover:text-emerald-400',
+      active: 'text-emerald-400'
     },
     about: {
       logo: 'from-cyan-400 to-purple-500',
       navHover: 'hover:text-cyan-400',
       underline: 'bg-cyan-400',
       border: 'border-cyan-500/20',
-      mobileHover: 'hover:text-cyan-400'
+      mobileHover: 'hover:text-cyan-400',
+      active: 'text-cyan-400'
     },
     experience: {
       logo: 'from-purple-500 to-pink-500',
       navHover: 'hover:text-purple-400',
       underline: 'bg-purple-400',
       border: 'border-purple-500/20',
-      mobileHover: 'hover:text-purple-400'
+      mobileHover: 'hover:text-purple-400',
+      active: 'text-purple-400'
     },
     projects: {
       logo: 'from-pink-500 to-emerald-400',
       navHover: 'hover:text-pink-400',
       underline: 'bg-pink-400',
       border: 'border-pink-500/20',
-      mobileHover: 'hover:text-pink-400'
+      mobileHover: 'hover:text-pink-400',
+      active: 'text-pink-400'
     },
     skills: {
       logo: 'from-emerald-400 via-purple-500 to-pink-500',
       navHover: 'hover:text-emerald-400',
       underline: 'bg-gradient-to-r from-emerald-400 via-purple-500 to-pink-500',
       border: 'border-emerald-500/20',
-      mobileHover: 'hover:text-emerald-400'
+      mobileHover: 'hover:text-emerald-400',
+      active: 'text-emerald-400'
     },
     contact: {
       logo: 'from-cyan-400 to-emerald-400',
       navHover: 'hover:text-cyan-400',
       underline: 'bg-cyan-400',
       border: 'border-cyan-500/20',
-      mobileHover: 'hover:text-cyan-400'
+      mobileHover: 'hover:text-cyan-400',
+      active: 'text-cyan-400'
     }
   };
 
@@ -109,16 +115,25 @@ const Navbar = () => {
           
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-8">
-              {navItems.map((item) => (
-                <button
-                  key={item.name}
-                  onClick={() => scrollToSection(item.href)}
-                  className={`text-gray-300 ${currentColors.navHover} px-3 py-2 text-sm font-medium transition-colors duration-200 relative group`}
-                >
-                  {item.name}
-                  <span className={`absolute bottom-0 left-0 w-0 h-0.5 ${currentColors.underline} transition-all duration-300 group-hover:w-full`}></span>
-                </button>
-              ))}
+              {navItems.map((item) => {
+                const isActive = activeSection === item.href.substring(1);
+                return (
+                  <button
+                    key={item.name}
+                    onClick={() => scrollToSection(item.href)}
+                    className={`px-3 py-2 text-sm font-medium transition-all duration-300 relative group ${
+                      isActive 
+                        ? `${currentColors.active} font-bold` 
+                        : `text-gray-300 ${currentColors.navHover}`
+                    }`}
+                  >
+                    {item.name}
+                    <span className={`absolute bottom-0 left-0 h-0.5 ${currentColors.underline} transition-all duration-300 ${
+                      isActive ? 'w-full' : 'w-0 group-hover:w-full'
+                    }`}></span>
+                  </button>
+                );
+              })}
             </div>
           </div>
           
@@ -136,15 +151,22 @@ const Navbar = () => {
       {isMobileMenuOpen && (
         <div className={`md:hidden bg-slate-900/95 backdrop-blur-md border-b ${currentColors.border}`}>
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            {navItems.map((item) => (
-              <button
-                key={item.name}
-                onClick={() => scrollToSection(item.href)}
-                className={`text-gray-300 ${currentColors.mobileHover} block px-3 py-2 text-base font-medium w-full text-left transition-colors duration-200`}
-              >
-                {item.name}
-              </button>
-            ))}
+            {navItems.map((item) => {
+              const isActive = activeSection === item.href.substring(1);
+              return (
+                <button
+                  key={item.name}
+                  onClick={() => scrollToSection(item.href)}
+                  className={`block px-3 py-2 text-base font-medium w-full text-left transition-colors duration-200 ${
+                    isActive 
+                      ? `${currentColors.active} font-bold` 
+                      : `text-gray-300 ${currentColors.mobileHover}`
+                  }`}
+                >
+                  {item.name}
+                </button>
+              );
+            })}
           </div>
         </div>
       )}
