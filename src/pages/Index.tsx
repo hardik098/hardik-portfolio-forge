@@ -13,7 +13,7 @@ import AnimatedBackground from '../components/AnimatedBackground';
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-purple-950 to-slate-950 relative overflow-x-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-red-950 relative overflow-x-hidden">
       <ThreeBackground />
       <AnimatedBackground />
       
