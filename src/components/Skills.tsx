@@ -1,32 +1,37 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Code, Database, Cloud, Settings } from 'lucide-react';
 
 const Skills = () => {
   const skillCategories = [
     {
       title: "Frontend Development",
       skills: ["React.js", "TypeScript", "HTML5", "CSS3", "JavaScript", "Tailwind CSS"],
-      color: "from-blue-500/20 to-cyan-500/20",
-      borderColor: "border-blue-500/30"
+      color: "from-cyan-400/20 via-purple-500/20 to-pink-500/20",
+      borderColor: "border-cyan-400/30",
+      icon: Code
     },
     {
       title: "Backend Development", 
       skills: [".NET Core", "C#", "Node.js", "Express.js", "RESTful APIs", "GraphQL"],
-      color: "from-emerald-500/20 to-teal-500/20",
-      borderColor: "border-emerald-500/30"
+      color: "from-cyan-400/20 via-purple-500/20 to-pink-500/20",
+      borderColor: "border-purple-500/30",
+      icon: Settings
     },
     {
       title: "Database & Cloud",
       skills: ["SQL Server", "MongoDB", "PostgreSQL", "Azure", "AWS", "Docker"],
-      color: "from-purple-500/20 to-indigo-500/20", 
-      borderColor: "border-purple-500/30"
+      color: "from-cyan-400/20 via-purple-500/20 to-pink-500/20", 
+      borderColor: "border-pink-500/30",
+      icon: Database
     },
     {
       title: "Tools & Others",
       skills: ["Git", "Visual Studio", "VS Code", "Postman", "Jenkins", "Agile"],
-      color: "from-cyan-500/20 to-blue-500/20",
-      borderColor: "border-cyan-500/30"
+      color: "from-cyan-400/20 via-purple-500/20 to-pink-500/20",
+      borderColor: "border-cyan-400/30",
+      icon: Cloud
     }
   ];
 
@@ -41,9 +46,9 @@ const Skills = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Technical <span className="bg-gradient-to-r from-emerald-400 to-cyan-500 bg-clip-text text-transparent">Skills</span>
+            Technical <span className="bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">Skills</span>
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-emerald-400 to-cyan-500 mx-auto mb-8"></div>
+          <div className="w-24 h-1 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 mx-auto mb-8"></div>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
             Here are the technologies and tools I work with to bring ideas to life
           </p>
@@ -59,6 +64,22 @@ const Skills = () => {
               viewport={{ once: true }}
               className={`bg-gradient-to-br ${category.color} backdrop-blur-sm p-8 rounded-xl border ${category.borderColor} hover:border-opacity-50 transition-all duration-300 hover:transform hover:scale-105`}
             >
+              <div className="flex items-center justify-center mb-6">
+                <motion.div
+                  whileHover={{ 
+                    scale: 1.2,
+                    rotate: 360
+                  }}
+                  transition={{ 
+                    type: "spring", 
+                    stiffness: 300,
+                    rotate: { duration: 0.6 }
+                  }}
+                  className="p-3 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 rounded-lg"
+                >
+                  <category.icon className="w-8 h-8 text-white" />
+                </motion.div>
+              </div>
               <h3 className="text-2xl font-bold text-white mb-6 text-center">
                 {category.title}
               </h3>
@@ -68,9 +89,17 @@ const Skills = () => {
                     key={skillIndex}
                     initial={{ opacity: 0, scale: 0.9 }}
                     whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.3, delay: (categoryIndex * 0.1) + (skillIndex * 0.05) }}
+                    whileHover={{ 
+                      scale: 1.05,
+                      y: -2
+                    }}
+                    transition={{ 
+                      duration: 0.3, 
+                      delay: (categoryIndex * 0.1) + (skillIndex * 0.05),
+                      hover: { type: "spring", stiffness: 300 }
+                    }}
                     viewport={{ once: true }}
-                    className="bg-slate-800/50 backdrop-blur-sm px-4 py-3 rounded-lg border border-slate-700/50 text-center hover:border-emerald-500/30 transition-all duration-300 hover:bg-slate-700/50"
+                    className="bg-slate-800/50 backdrop-blur-sm px-4 py-3 rounded-lg border border-slate-700/50 text-center hover:border-cyan-400/30 transition-all duration-300 hover:bg-slate-700/50 cursor-pointer"
                   >
                     <span className="text-gray-300 font-medium">{skill}</span>
                   </motion.div>
