@@ -6,10 +6,47 @@ import { Github, Linkedin, MapPin, Phone, Code, Terminal } from 'lucide-react';
 const Hero = () => {
   const codeSnippet = `const developer = {
   name: "Hardik Anawala",
-  role: "Full-Stack Developer",
+  role: "Software Developer",
   skills: [".NET", "React", "Node.js"],
   passion: "Creating innovative solutions"
 };`;
+
+  // Animation variants for text
+  const titleVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut"
+      }
+    }
+  };
+
+  const codeVariants = {
+    hidden: { opacity: 0, scale: 0.9 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 1,
+        ease: "easeOut",
+        delay: 0.5
+      }
+    }
+  };
+
+  const typewriterVariants = {
+    hidden: { width: 0 },
+    visible: {
+      width: "auto",
+      transition: {
+        duration: 2,
+        ease: "easeInOut"
+      }
+    }
+  };
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center px-4 relative overflow-hidden pt-16">
@@ -33,13 +70,20 @@ const Hero = () => {
           
           <motion.h1 
             className="text-5xl md:text-7xl font-bold text-white mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
+            variants={titleVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
           >
-            <span className="bg-gradient-to-r from-emerald-400 via-cyan-500 to-purple-500 bg-clip-text text-transparent">
+            <motion.span 
+              className="bg-gradient-to-r from-emerald-400 via-cyan-500 to-purple-500 bg-clip-text text-transparent inline-block overflow-hidden whitespace-nowrap"
+              variants={typewriterVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+            >
               Hardik Anawala
-            </span>
+            </motion.span>
           </motion.h1>
           
           <motion.div 
@@ -49,9 +93,15 @@ const Hero = () => {
             transition={{ delay: 0.6 }}
           >
             <Code className="text-cyan-400" size={24} />
-            <p className="text-xl md:text-2xl text-gray-300 font-mono">
-              Full-Stack Software Developer
-            </p>
+            <motion.p 
+              className="text-xl md:text-2xl text-gray-300 font-mono"
+              variants={titleVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+            >
+              Software Developer
+            </motion.p>
           </motion.div>
           
           <motion.p 
@@ -116,22 +166,37 @@ const Hero = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, delay: 0.5 }}
         >
-          <div className="bg-gray-900/80 backdrop-blur-sm border border-emerald-500/30 rounded-xl p-6 font-mono text-sm max-w-md hover:border-emerald-500/50 transition-colors">
+          <motion.div 
+            className="bg-gray-900/80 backdrop-blur-sm border border-emerald-500/30 rounded-xl p-6 font-mono text-sm max-w-md hover:border-emerald-500/50 transition-colors"
+            variants={codeVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
             <div className="flex items-center gap-2 mb-4">
               <div className="w-3 h-3 rounded-full bg-red-500"></div>
               <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
               <div className="w-3 h-3 rounded-full bg-green-500"></div>
-              <span className="text-gray-400 ml-2">developer.js</span>
+              <motion.span 
+                className="text-gray-400 ml-2"
+                variants={titleVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+              >
+                developer.js
+              </motion.span>
             </div>
             <motion.pre 
               className="text-emerald-400 leading-6"
               initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
+              whileInView={{ opacity: 1 }}
               transition={{ delay: 1, duration: 2 }}
+              viewport={{ once: true }}
             >
               <code>{codeSnippet}</code>
             </motion.pre>
-          </div>
+          </motion.div>
         </motion.div>
       </div>
 

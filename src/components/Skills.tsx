@@ -1,151 +1,84 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Database, Smartphone, Code, Server, Layers, Wrench, Brain, Globe } from 'lucide-react';
 
 const Skills = () => {
   const skillCategories = [
     {
-      title: "Backend Development",
-      icon: Server,
-      skills: ["ASP.NET Core MVC", ".NET Technologies", "Node.js", "Express.js", "Java EE", "PHP"],
-      color: "from-red-700 to-red-900"
+      title: "Frontend Development",
+      skills: ["React.js", "TypeScript", "HTML5", "CSS3", "JavaScript", "Tailwind CSS"],
+      color: "from-blue-500/20 to-cyan-500/20",
+      borderColor: "border-blue-500/30"
     },
     {
-      title: "Frontend Development", 
-      icon: Code,
-      skills: ["React.js", "JavaScript", "Ajax", "jQuery", "HTML5", "CSS3"],
-      color: "from-green-700 to-green-900"
+      title: "Backend Development", 
+      skills: [".NET Core", "C#", "Node.js", "Express.js", "RESTful APIs", "GraphQL"],
+      color: "from-emerald-500/20 to-teal-500/20",
+      borderColor: "border-emerald-500/30"
     },
     {
-      title: "Mobile Development",
-      icon: Smartphone,
-      skills: ["Android (Kotlin)", "iOS (Swift)", "Cross-platform Development"],
-      color: "from-blue-800 to-blue-950"
+      title: "Database & Cloud",
+      skills: ["SQL Server", "MongoDB", "PostgreSQL", "Azure", "AWS", "Docker"],
+      color: "from-purple-500/20 to-indigo-500/20", 
+      borderColor: "border-purple-500/30"
     },
     {
-      title: "Database & Storage",
-      icon: Database,
-      skills: ["PostgreSQL", "MongoDB", "SQLite", "RDBMS", "Azure Blob Storage"],
-      color: "from-gray-700 to-gray-900"
-    },
-    {
-      title: "Architecture & Patterns",
-      icon: Layers,
-      skills: ["CQRS Pattern", "RESTful APIs", "Microservices", "MVC Architecture"],
-      color: "from-red-800 to-black"
-    },
-    {
-      title: "DevOps & Tools",
-      icon: Wrench,
-      skills: ["Git & GitHub", "Azure Cloud", "Docker", "CI/CD Pipelines"],
-      color: "from-green-800 to-black"
-    },
-    {
-      title: "Problem Solving",
-      icon: Brain,
-      skills: ["Algorithm Design", "Critical Thinking", "Code Optimization", "Debugging"],
-      color: "from-blue-900 to-black"
-    },
-    {
-      title: "IoT & Integration",
-      icon: Globe,
-      skills: ["IoT Development", "API Integration", "Third-party Services", "Real-time Systems"],
-      color: "from-purple-900 to-black"
+      title: "Tools & Others",
+      skills: ["Git", "Visual Studio", "VS Code", "Postman", "Jenkins", "Agile"],
+      color: "from-cyan-500/20 to-blue-500/20",
+      borderColor: "border-cyan-500/30"
     }
   ];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6
-      }
-    }
-  };
-
   return (
-    <section id="skills" className="py-20 px-4 relative">
-      <div className="max-w-7xl mx-auto">
-        <motion.h2 
-          className="text-4xl md:text-5xl font-bold text-center text-white mb-16"
-          initial={{ opacity: 0, y: 50 }}
+    <section id="skills" className="py-20 px-4 bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900">
+      <div className="max-w-6xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
+          className="text-center mb-16"
         >
-          Technical <span className="bg-gradient-to-r from-red-400 to-green-500 bg-clip-text text-transparent">Arsenal</span>
-        </motion.h2>
-        
-        <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
-          {skillCategories.map((category, index) => {
-            const IconComponent = category.icon;
-            return (
-              <motion.div 
-                key={index}
-                className="group relative"
-                variants={itemVariants}
-                whileHover={{ scale: 1.05 }}
-              >
-                <div className="bg-gradient-to-br from-black/60 to-gray-900/60 backdrop-blur-sm border border-red-500/30 rounded-2xl p-6 hover:border-red-500/50 transition-all duration-300 h-full relative overflow-hidden">
-                  {/* Background gradient effect */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${category.color} opacity-10 group-hover:opacity-20 transition-opacity`}></div>
-                  
-                  <div className="relative z-10">
-                    <div className="flex items-center gap-3 mb-6">
-                      <motion.div 
-                        className={`w-12 h-12 rounded-xl bg-gradient-to-r ${category.color} flex items-center justify-center shadow-lg`}
-                        whileHover={{ rotate: 360 }}
-                        transition={{ duration: 0.6 }}
-                      >
-                        <IconComponent size={24} className="text-white" />
-                      </motion.div>
-                      <h3 className="text-lg font-bold text-white group-hover:text-red-400 transition-colors">
-                        {category.title}
-                      </h3>
-                    </div>
-                    
-                    <div className="space-y-2">
-                      {category.skills.map((skill, skillIndex) => (
-                        <motion.div 
-                          key={skillIndex}
-                          className="bg-gradient-to-r from-red-500/15 to-green-500/15 border border-red-500/30 rounded-lg p-2 hover:border-red-500/50 hover:bg-gradient-to-r hover:from-red-500/25 hover:to-green-500/25 transition-all duration-200 group/skill"
-                          initial={{ opacity: 0, x: -20 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          transition={{ delay: skillIndex * 0.1 }}
-                          viewport={{ once: true }}
-                          whileHover={{ x: 5 }}
-                        >
-                          <span className="text-gray-300 font-medium text-sm group-hover/skill:text-white transition-colors">
-                            {skill}
-                          </span>
-                        </motion.div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            );
-          })}
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            Technical <span className="bg-gradient-to-r from-emerald-400 to-cyan-500 bg-clip-text text-transparent">Skills</span>
+          </h2>
+          <div className="w-24 h-1 bg-gradient-to-r from-emerald-400 to-cyan-500 mx-auto mb-8"></div>
+          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+            Here are the technologies and tools I work with to bring ideas to life
+          </p>
         </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {skillCategories.map((category, categoryIndex) => (
+            <motion.div
+              key={categoryIndex}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: categoryIndex * 0.1 }}
+              viewport={{ once: true }}
+              className={`bg-gradient-to-br ${category.color} backdrop-blur-sm p-8 rounded-xl border ${category.borderColor} hover:border-opacity-50 transition-all duration-300 hover:transform hover:scale-105`}
+            >
+              <h3 className="text-2xl font-bold text-white mb-6 text-center">
+                {category.title}
+              </h3>
+              <div className="grid grid-cols-2 gap-4">
+                {category.skills.map((skill, skillIndex) => (
+                  <motion.div
+                    key={skillIndex}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.3, delay: (categoryIndex * 0.1) + (skillIndex * 0.05) }}
+                    viewport={{ once: true }}
+                    className="bg-slate-800/50 backdrop-blur-sm px-4 py-3 rounded-lg border border-slate-700/50 text-center hover:border-emerald-500/30 transition-all duration-300 hover:bg-slate-700/50"
+                  >
+                    <span className="text-gray-300 font-medium">{skill}</span>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );

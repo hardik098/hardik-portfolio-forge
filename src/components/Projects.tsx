@@ -1,194 +1,119 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ExternalLink, Calendar, Github } from 'lucide-react';
+import { ExternalLink, Github, Code2, Database, Globe } from 'lucide-react';
 
 const Projects = () => {
   const projects = [
     {
-      title: "Nishkar - Jewelry Multistore Platform",
-      description: "A comprehensive full-stack e-commerce platform designed for local jewellers, featuring advanced inventory management and real-time gold price tracking.",
-      technologies: ["React.js", "Node.js", "PostgreSQL", "Cloudinary", "GoldApi.io"],
-      features: [
-        "Admin and vendor management panels",
-        "Real-time gold price tracking with cron jobs",
-        "Image management with Cloudinary integration",
-        "Automated email services with NodeMailer"
-      ],
-      image: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800&h=600&fit=crop&crop=center",
-      gradient: "from-yellow-600 to-amber-800"
+      title: "E-Commerce Platform",
+      description: "Full-stack e-commerce solution with React frontend and .NET Core backend",
+      image: "/lovable-uploads/141648ab-a447-4a09-8077-34f047a51327.png",
+      tech: ["React", ".NET Core", "SQL Server", "Azure"],
+      github: "#",
+      demo: "#",
+      icon: Globe
     },
     {
-      title: "Unnati Mechanic - Loyalty Program",
-      description: "An innovative loyalty platform enabling users to scan coupons and earn rewards, with integrated payment processing and analytics.",
-      technologies: ["React.js", "Node.js", "Cashfree", "Azure Blob Storage", "Power BI"],
-      features: [
-        "Unique coupon generation system",
-        "Scheduled background services",
-        "Cashfree payment gateway integration",
-        "Real-time analytics with Power BI dashboards"
-      ],
-      image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=600&fit=crop&crop=center",
-      gradient: "from-blue-600 to-indigo-800"
+      title: "Task Management System",
+      description: "Collaborative project management tool with real-time updates",
+      image: "/lovable-uploads/dd03c944-c23c-4f29-bde4-344101cf6bfb.png", 
+      tech: ["React", "Node.js", "MongoDB", "Socket.io"],
+      github: "#",
+      demo: "#",
+      icon: Code2
     },
     {
-      title: "Hydroponics IoT System - IIT Bombay",
-      description: "An IoT-based automated monitoring system for hydroponic plant growth, providing real-time insights and proactive plant care.",
-      technologies: ["IoT Sensors", "Real-time Monitoring", "Alert Systems"],
-      features: [
-        "Automated nutrient level monitoring",
-        "Environmental parameter tracking",
-        "Real-time alerts and notifications",
-        "Proactive plant care guidance"
-      ],
-      duration: "November 2022 - May 2023",
-      image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&h=600&fit=crop&crop=center",
-      gradient: "from-green-600 to-emerald-800"
+      title: "Data Analytics Dashboard",
+      description: "Interactive dashboard for business intelligence and reporting",
+      image: "/lovable-uploads/141648ab-a447-4a09-8077-34f047a51327.png",
+      tech: ["React", "D3.js", ".NET", "PostgreSQL"],
+      github: "#",
+      demo: "#",
+      icon: Database
     }
   ];
 
   return (
-    <section id="projects" className="py-20 px-4 relative">
+    <section id="projects" className="py-20 px-4 bg-gradient-to-br from-slate-900 via-gray-900 to-slate-900">
       <div className="max-w-7xl mx-auto">
-        <motion.h2 
-          className="text-4xl md:text-5xl font-bold text-center text-white mb-16"
-          initial={{ opacity: 0, y: 50 }}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
+          className="text-center mb-16"
         >
-          Featured <span className="bg-gradient-to-r from-emerald-400 to-cyan-500 bg-clip-text text-transparent">Projects</span>
-        </motion.h2>
-        
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-          {projects.slice(0, 2).map((project, index) => (
-            <motion.div 
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            Featured <span className="bg-gradient-to-r from-emerald-400 to-cyan-500 bg-clip-text text-transparent">Projects</span>
+          </h2>
+          <div className="w-24 h-1 bg-gradient-to-r from-emerald-400 to-cyan-500 mx-auto mb-8"></div>
+          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+            Here are some of my recent projects that showcase my skills and experience
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {projects.map((project, index) => (
+            <motion.div
               key={index}
-              className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm border border-emerald-500/20 hover:border-emerald-500/40 transition-all duration-300"
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: index * 0.2 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
-              whileHover={{ scale: 1.02 }}
+              className="group bg-gradient-to-br from-slate-800/50 to-gray-800/50 backdrop-blur-sm rounded-xl overflow-hidden border border-slate-700/50 hover:border-emerald-500/30 transition-all duration-300 hover:transform hover:scale-105"
             >
-              <div className="relative h-56 overflow-hidden">
+              <div className="relative overflow-hidden">
                 <img 
                   src={project.image} 
                   alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                  className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
                 />
-                <div className={`absolute inset-0 bg-gradient-to-t ${project.gradient} opacity-60`}></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div className="absolute top-4 right-4">
-                  <div className="flex gap-2">
-                    <motion.div 
-                      className="p-2 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-colors cursor-pointer"
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.9 }}
-                    >
-                      <ExternalLink size={18} className="text-white" />
-                    </motion.div>
-                    <motion.div 
-                      className="p-2 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-colors cursor-pointer"
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.9 }}
-                    >
-                      <Github size={18} className="text-white" />
-                    </motion.div>
-                  </div>
+                  <project.icon className="w-8 h-8 text-emerald-400" />
                 </div>
               </div>
               
               <div className="p-6">
-                <h3 className="text-xl md:text-2xl font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors">
+                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors">
                   {project.title}
                 </h3>
+                <p className="text-gray-400 mb-4 leading-relaxed">
+                  {project.description}
+                </p>
                 
-                <p className="text-gray-300 leading-relaxed mb-4">{project.description}</p>
-                
-                <div className="mb-4">
-                  <h4 className="text-emerald-400 font-semibold mb-2 text-sm">Key Features:</h4>
-                  <ul className="space-y-1">
-                    {project.features.slice(0, 2).map((feature, featureIndex) => (
-                      <li key={featureIndex} className="text-gray-300 flex items-start text-sm">
-                        <span className="text-cyan-400 mr-2 mt-1">•</span>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                
-                <div className="flex flex-wrap gap-2">
-                  {project.technologies.slice(0, 4).map((tech, techIndex) => (
-                    <span 
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {project.tech.map((tech, techIndex) => (
+                    <span
                       key={techIndex}
-                      className="bg-gradient-to-r from-emerald-500/20 to-cyan-500/20 border border-emerald-500/30 text-emerald-300 px-2 py-1 rounded-full text-xs hover:border-emerald-500/50 transition-colors"
+                      className="px-3 py-1 bg-gradient-to-r from-emerald-500/20 to-cyan-500/20 border border-emerald-500/30 rounded-full text-emerald-400 text-xs font-medium"
                     >
                       {tech}
                     </span>
                   ))}
+                </div>
+                
+                <div className="flex gap-4">
+                  <a
+                    href={project.github}
+                    className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-slate-700 to-gray-700 rounded-lg text-white hover:from-slate-600 hover:to-gray-600 transition-all duration-300 hover:scale-105"
+                  >
+                    <Github size={16} />
+                    <span className="text-sm">Code</span>
+                  </a>
+                  <a
+                    href={project.demo}
+                    className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-lg text-white hover:from-emerald-400 hover:to-cyan-400 transition-all duration-300 hover:scale-105"
+                  >
+                    <ExternalLink size={16} />
+                    <span className="text-sm">Demo</span>
+                  </a>
                 </div>
               </div>
             </motion.div>
           ))}
         </div>
-        
-        <motion.div 
-          className="flex justify-center"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          viewport={{ once: true }}
-        >
-          <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm border border-emerald-500/20 hover:border-emerald-500/40 transition-all duration-300 max-w-4xl">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
-              <div className="relative h-64 md:h-auto overflow-hidden">
-                <img 
-                  src={projects[2].image} 
-                  alt={projects[2].title}
-                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                />
-                <div className={`absolute inset-0 bg-gradient-to-t ${projects[2].gradient} opacity-60`}></div>
-                {projects[2].duration && (
-                  <div className="absolute top-4 left-4 flex items-center gap-2 bg-white/20 backdrop-blur-sm rounded-full px-3 py-1">
-                    <Calendar size={14} className="text-white" />
-                    <span className="text-white text-xs">{projects[2].duration}</span>
-                  </div>
-                )}
-              </div>
-              
-              <div className="p-6">
-                <h3 className="text-xl md:text-2xl font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors">
-                  {projects[2].title}
-                </h3>
-                
-                <p className="text-gray-300 leading-relaxed mb-4 text-sm">{projects[2].description}</p>
-                
-                <div className="mb-4">
-                  <h4 className="text-emerald-400 font-semibold mb-2 text-sm">Key Features:</h4>
-                  <ul className="grid grid-cols-1 gap-1">
-                    {projects[2].features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="text-gray-300 flex items-start text-sm">
-                        <span className="text-cyan-400 mr-2 mt-1">•</span>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                
-                <div className="flex flex-wrap gap-2">
-                  {projects[2].technologies.map((tech, techIndex) => (
-                    <span 
-                      key={techIndex}
-                      className="bg-gradient-to-r from-emerald-500/20 to-cyan-500/20 border border-emerald-500/30 text-emerald-300 px-2 py-1 rounded-full text-xs hover:border-emerald-500/50 transition-colors"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </motion.div>
       </div>
     </section>
   );
