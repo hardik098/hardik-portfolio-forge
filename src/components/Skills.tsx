@@ -93,23 +93,24 @@ const Skills = () => {
     }
   ];
 
-  const floatingElements = Array.from({ length: 12 }, (_, i) => ({
+  // Reduced floating elements for better performance
+  const floatingElements = Array.from({ length: 6 }, (_, i) => ({
     id: i,
-    size: Math.random() * 4 + 2,
+    size: Math.random() * 3 + 2,
     x: Math.random() * 100,
     y: Math.random() * 100,
-    duration: Math.random() * 10 + 15,
-    delay: Math.random() * 5,
+    duration: Math.random() * 8 + 12,
+    delay: Math.random() * 3,
   }));
 
   return (
     <section id="skills" className="py-20 px-4 bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 relative overflow-hidden">
-      {/* Floating Background Elements */}
+      {/* Optimized Floating Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         {floatingElements.map((element) => (
           <motion.div
             key={element.id}
-            className="absolute w-1 h-1 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full opacity-30"
+            className="absolute w-1 h-1 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full opacity-40"
             style={{
               left: `${element.x}%`,
               top: `${element.y}%`,
@@ -117,44 +118,41 @@ const Skills = () => {
               height: `${element.size}px`,
             }}
             animate={{
-              y: [0, -100, 0],
-              opacity: [0.3, 0.8, 0.3],
-              scale: [1, 1.5, 1],
+              y: [0, -80, 0],
+              opacity: [0.2, 0.6, 0.2],
             }}
             transition={{
               duration: element.duration,
               delay: element.delay,
               repeat: Infinity,
-              ease: "easeInOut",
+              ease: "linear",
             }}
           />
         ))}
       </div>
 
-      {/* Animated Background Gradients */}
+      {/* Simplified Background Gradients */}
       <div className="absolute inset-0">
         <motion.div
-          className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-full blur-3xl"
+          className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-r from-blue-500/8 to-purple-500/8 rounded-full blur-3xl"
           animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.6, 0.3],
-            x: [0, 50, 0],
+            scale: [1, 1.1, 1],
+            opacity: [0.3, 0.5, 0.3],
           }}
           transition={{
-            duration: 8,
+            duration: 12,
             repeat: Infinity,
             ease: "easeInOut",
           }}
         />
         <motion.div
-          className="absolute bottom-0 right-1/4 w-96 h-96 bg-gradient-to-r from-emerald-500/10 to-cyan-500/10 rounded-full blur-3xl"
+          className="absolute bottom-0 right-1/4 w-96 h-96 bg-gradient-to-r from-emerald-500/8 to-cyan-500/8 rounded-full blur-3xl"
           animate={{
-            scale: [1.2, 1, 1.2],
+            scale: [1.1, 1, 1.1],
             opacity: [0.4, 0.2, 0.4],
-            x: [0, -50, 0],
           }}
           transition={{
-            duration: 10,
+            duration: 14,
             repeat: Infinity,
             ease: "easeInOut",
           }}
@@ -165,31 +163,29 @@ const Skills = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6 }}
           className="text-center mb-20"
         >
-          {/* Floating Icon */}
+          {/* Optimized Floating Icon */}
           <motion.div
             className="inline-flex items-center justify-center mb-8"
             animate={{
-              y: [0, -10, 0],
-              rotate: [0, 5, -5, 0],
+              y: [0, -8, 0],
             }}
             transition={{
-              duration: 4,
+              duration: 6,
               repeat: Infinity,
               ease: "easeInOut",
             }}
           >
             <div className="relative">
               <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 rounded-full blur-xl opacity-50"
+                className="absolute inset-0 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 rounded-full blur-xl opacity-40"
                 animate={{
-                  scale: [1, 1.3, 1],
-                  opacity: [0.3, 0.6, 0.3],
+                  scale: [1, 1.2, 1],
                 }}
                 transition={{
-                  duration: 3,
+                  duration: 4,
                   repeat: Infinity,
                   ease: "easeInOut",
                 }}
@@ -202,9 +198,9 @@ const Skills = () => {
 
           <motion.h2
             className="text-5xl md:text-7xl font-bold text-white mb-8"
-            initial={{ opacity: 0, scale: 0.8 }}
+            initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
           >
             Technical{" "}
             <span className="relative">
@@ -215,12 +211,11 @@ const Skills = () => {
                 className="absolute -top-2 -right-2"
                 animate={{
                   rotate: [0, 360],
-                  scale: [1, 1.2, 1],
                 }}
                 transition={{
-                  duration: 4,
+                  duration: 8,
                   repeat: Infinity,
-                  ease: "easeInOut",
+                  ease: "linear",
                 }}
               >
                 <Star className="w-6 h-6 text-yellow-400 fill-yellow-400" />
@@ -232,15 +227,15 @@ const Skills = () => {
             className="w-32 h-1 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 mx-auto mb-8 rounded-full relative"
             initial={{ scaleX: 0 }}
             whileInView={{ scaleX: 1 }}
-            transition={{ duration: 1, delay: 0.4 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
           >
             <motion.div
               className="absolute inset-0 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 rounded-full blur-sm"
               animate={{
-                opacity: [0.5, 1, 0.5],
+                opacity: [0.5, 0.8, 0.5],
               }}
               transition={{
-                duration: 2,
+                duration: 3,
                 repeat: Infinity,
                 ease: "easeInOut",
               }}
@@ -251,7 +246,7 @@ const Skills = () => {
             className="text-gray-300 text-xl max-w-3xl mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
           >
             Crafting digital experiences with cutting-edge technologies and creative innovation
           </motion.p>
@@ -261,18 +256,15 @@ const Skills = () => {
           {skillCategories.map((category, categoryIndex) => (
             <motion.div
               key={categoryIndex}
-              initial={{ opacity: 0, y: 50, scale: 0.9 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               transition={{ 
-                duration: 0.8, 
-                delay: categoryIndex * 0.15,
-                type: "spring",
-                stiffness: 100
+                duration: 0.5, 
+                delay: categoryIndex * 0.1,
               }}
               whileHover={{ 
                 scale: 1.02,
-                rotateY: 5,
-                rotateX: 2,
+                transition: { duration: 0.2 }
               }}
               className={`relative group cursor-pointer`}
             >
@@ -280,19 +272,11 @@ const Skills = () => {
               <div className={`absolute inset-0 ${category.bgPattern} rounded-2xl`} />
               
               {/* Main Card */}
-              <div className={`relative bg-gradient-to-br ${category.color} backdrop-blur-xl p-8 rounded-2xl border-2 ${category.borderColor} transition-all duration-500 hover:shadow-2xl hover:${category.glowColor} hover:border-opacity-80 overflow-hidden`}>
+              <div className={`relative bg-gradient-to-br ${category.color} backdrop-blur-xl p-8 rounded-2xl border-2 ${category.borderColor} transition-all duration-300 hover:shadow-2xl hover:${category.glowColor} hover:border-opacity-80 overflow-hidden`}>
                 
-                {/* Animated Border Glow */}
+                {/* Simplified Border Glow */}
                 <motion.div
-                  className={`absolute inset-0 bg-gradient-to-r ${category.color} rounded-2xl opacity-0 group-hover:opacity-30 blur-xl transition-opacity duration-500`}
-                  animate={{
-                    scale: [1, 1.05, 1],
-                  }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
+                  className={`absolute inset-0 bg-gradient-to-r ${category.color} rounded-2xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-300`}
                 />
 
                 {/* Header with Icon */}
@@ -300,26 +284,10 @@ const Skills = () => {
                   <motion.div
                     className="relative"
                     whileHover={{ 
-                      scale: 1.1,
-                      rotate: [0, -10, 10, 0],
-                    }}
-                    transition={{ 
-                      type: "spring", 
-                      stiffness: 300,
-                      damping: 20,
+                      scale: 1.05,
+                      transition: { duration: 0.2 }
                     }}
                   >
-                    <motion.div
-                      className={`absolute inset-0 bg-gradient-to-r ${category.color} rounded-xl blur-md opacity-50`}
-                      animate={{
-                        scale: [1, 1.2, 1],
-                      }}
-                      transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                      }}
-                    />
                     <div className="relative p-4 bg-gradient-to-br from-white/20 to-white/5 backdrop-blur-sm rounded-xl border border-white/20">
                       <category.icon className="w-10 h-10 text-white drop-shadow-lg" />
                     </div>
@@ -328,8 +296,10 @@ const Skills = () => {
 
                 <motion.h3 
                   className="text-2xl md:text-3xl font-bold text-white mb-8 text-center"
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ type: "spring", stiffness: 400 }}
+                  whileHover={{ 
+                    scale: 1.02,
+                    transition: { duration: 0.2 }
+                  }}
                 >
                   {category.title}
                 </motion.h3>
@@ -341,37 +311,31 @@ const Skills = () => {
                     return (
                       <motion.div
                         key={skillIndex}
-                        initial={{ opacity: 0, scale: 0.8, y: 20 }}
-                        whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                        initial={{ opacity: 0, y: 15 }}
+                        whileInView={{ opacity: 1, y: 0 }}
                         whileHover={{ 
-                          scale: 1.08,
-                          y: -5,
-                          rotateX: 10,
+                          scale: 1.05,
+                          y: -2,
+                          transition: { duration: 0.2 }
                         }}
-                        whileTap={{ scale: 0.95 }}
                         transition={{ 
                           duration: 0.3, 
-                          delay: (categoryIndex * 0.1) + (skillIndex * 0.05),
-                          type: "spring",
-                          stiffness: 200
+                          delay: (categoryIndex * 0.05) + (skillIndex * 0.02),
                         }}
                         className="group/skill relative"
                       >
-                        {/* Skill Card Background Glow */}
-                        <motion.div
-                          className={`absolute inset-0 bg-gradient-to-r ${category.color} rounded-xl opacity-0 group-hover/skill:opacity-40 blur-sm transition-opacity duration-300`}
-                        />
-                        
                         {/* Skill Card */}
-                        <div className="relative bg-slate-800/60 backdrop-blur-sm px-4 py-4 rounded-xl border border-slate-600/30 hover:border-white/30 transition-all duration-300 hover:bg-slate-700/60">
+                        <div className="relative bg-slate-800/60 backdrop-blur-sm px-4 py-4 rounded-xl border border-slate-600/30 hover:border-white/30 transition-all duration-200 hover:bg-slate-700/60">
                           <div className="flex items-center justify-center gap-3">
                             <motion.div
-                              whileHover={{ rotate: 360 }}
-                              transition={{ duration: 0.6 }}
+                              whileHover={{ 
+                                rotate: 180,
+                                transition: { duration: 0.3 }
+                              }}
                             >
-                              <SkillIcon className="w-5 h-5 text-white group-hover/skill:text-cyan-300 transition-colors duration-300" />
+                              <SkillIcon className="w-5 h-5 text-white group-hover/skill:text-cyan-300 transition-colors duration-200" />
                             </motion.div>
-                            <span className="text-gray-200 font-medium text-sm group-hover/skill:text-white transition-colors duration-300">
+                            <span className="text-gray-200 font-medium text-sm group-hover/skill:text-white transition-colors duration-200">
                               {skill}
                             </span>
                           </div>
@@ -386,7 +350,7 @@ const Skills = () => {
                   className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${category.color} opacity-60`}
                   initial={{ scaleX: 0 }}
                   whileInView={{ scaleX: 1 }}
-                  transition={{ duration: 1, delay: categoryIndex * 0.2 }}
+                  transition={{ duration: 0.6, delay: categoryIndex * 0.1 }}
                 />
               </div>
             </motion.div>
@@ -395,19 +359,19 @@ const Skills = () => {
 
         {/* Bottom CTA Section */}
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
           className="text-center mt-20"
         >
           <motion.div
             className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border border-cyan-500/30 rounded-full backdrop-blur-sm"
-            whileHover={{ scale: 1.05 }}
+            whileHover={{ scale: 1.02 }}
             animate={{
-              y: [0, -5, 0],
+              y: [0, -3, 0],
             }}
             transition={{
-              duration: 3,
+              duration: 4,
               repeat: Infinity,
               ease: "easeInOut",
             }}
