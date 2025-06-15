@@ -38,7 +38,7 @@ const Projects = () => {
     {
       title: "Task Management System",
       description: "Efficient task management solution with intuitive interface for adding, organizing, and tracking tasks. Built with modern web technologies for seamless task organization and productivity enhancement.",
-      image: "/lovable-uploads/dd03c944-c23c-4f29-bde4-344101cf6bfb.png",
+      image: "/lovable-uploads/6814399f-2c0e-43af-90bc-1f8ae214a7a7.png",
       tech: ["HTML", "CSS", "PHP", "JavaScript", "MySQL"],
       github: "https://github.com/hardik098/PHP-Task-manager-system",
       demo: null,
