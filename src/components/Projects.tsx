@@ -19,7 +19,7 @@ const Projects = () => {
     {
       title: "Unnati Mechanic - Loyalty Program",
       description: "Live industry project featuring loyalty platform with coupon scanning, reward system, unique coupon generation service, and Power BI analytics integration. Includes Cashfree payment gateway and Azure Blob Storage.",
-      image: "/lovable-uploads/dd03c944-c23c-4f29-bde4-344101cf6bfb.png", 
+      image: "/lovable-uploads/ff3349b0-566f-4675-b9ae-8a8cb1724727.png", 
       tech: [".NET Core", "Azure", "Power BI", "Cashfree"],
       github: null,
       demo: "https://110.226.126.143:2828/",
