@@ -1,44 +1,14 @@
-
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { Github, Linkedin, MapPin, Phone, Code, Terminal } from 'lucide-react';
 
 const Hero = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const heroRef = useRef<HTMLDivElement>(null);
-  const name = "Hardik Anawala";
-
   const codeSnippet = `const developer = {
   name: "Hardik Anawala",
   role: "Software Developer",
   skills: [".NET", "React", "Node.js"],
   passion: "Creating innovative solutions"
 };`;
-
-  // Use Intersection Observer to detect when home section is in view
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        } else {
-          // Reset animation when leaving the section
-          setIsVisible(false);
-        }
-      },
-      { threshold: 0.3 } // Trigger when 30% of the section is visible
-    );
-
-    if (heroRef.current) {
-      observer.observe(heroRef.current);
-    }
-
-    return () => {
-      if (heroRef.current) {
-        observer.unobserve(heroRef.current);
-      }
-    };
-  }, []);
 
   // Animation variants for text - simplified without transitions
   const titleVariants = {
@@ -56,14 +26,8 @@ const Hero = () => {
     visible: { width: "auto" }
   };
 
-  // Character animation variants
-  const charVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 }
-  };
-
   return (
-    <section ref={heroRef} id="home" className="min-h-screen flex items-center justify-center px-4 relative overflow-hidden pt-16">
+    <section id="home" className="min-h-screen flex items-center justify-center px-4 relative overflow-hidden pt-16">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center z-10 relative">
         {/* Left side - Text content */}
         <motion.div 
@@ -95,28 +59,23 @@ const Hero = () => {
             className="text-5xl md:text-7xl font-bold text-white mb-6"
             variants={titleVariants}
             initial="hidden"
-            animate={isVisible ? "visible" : "hidden"}
+            whileInView="visible"
+            viewport={{ once: true }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <span className="bg-gradient-to-r from-emerald-400 via-cyan-500 to-purple-500 bg-clip-text text-transparent inline-block">
-              {name.split('').map((char, index) => (
-                <motion.span
-                  key={`${char}-${index}`}
-                  variants={charVariants}
-                  initial="hidden"
-                  animate={isVisible ? "visible" : "hidden"}
-                  transition={{
-                    duration: 0.1,
-                    delay: isVisible ? index * 0.1 : 0,
-                    ease: "easeOut"
-                  }}
-                  className="inline-block"
-                >
-                  {char === ' ' ? '\u00A0' : char}
-                </motion.span>
-              ))}
-            </span>
+            <motion.span 
+              className="bg-gradient-to-r from-emerald-400 via-cyan-500 to-purple-500 bg-clip-text text-transparent inline-block overflow-hidden whitespace-nowrap"
+              variants={typewriterVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              transition={{ duration: 2, ease: "easeInOut" }}
+            >
+              Hardik Anawala
+            </motion.span>
           </motion.h1>
+          
+          
           
           <motion.div 
             className="flex items-center gap-3 mb-8"
