@@ -3,32 +3,30 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const FloatingElements = () => {
-  const floatingElements = Array.from({ length: 6 }, (_, i) => ({
-    id: i,
-    size: Math.random() * 3 + 2,
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-    duration: Math.random() * 8 + 12,
-    delay: Math.random() * 3,
-  }));
+  // Only 2 elements, small and with subtle opacity animation
+  const floatingElements = [
+    { id: 1, size: 1.5, x: 30, y: 15, duration: 9, delay: 0 },
+    { id: 2, size: 2, x: 70, y: 75, duration: 10, delay: 1.2 },
+  ];
 
   return (
     <>
-      {/* Floating Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none">
         {floatingElements.map((element) => (
           <motion.div
             key={element.id}
-            className="absolute w-1 h-1 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full opacity-40"
+            className="absolute bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full"
             style={{
               left: `${element.x}%`,
               top: `${element.y}%`,
               width: `${element.size}px`,
               height: `${element.size}px`,
+              opacity: 0.14,
+              filter: "blur(0.5px)"
             }}
             animate={{
-              y: [0, -80, 0],
-              opacity: [0.2, 0.6, 0.2],
+              y: [0, -10, 0],
+              opacity: [0.1, 0.16, 0.1],
             }}
             transition={{
               duration: element.duration,
@@ -39,36 +37,10 @@ const FloatingElements = () => {
           />
         ))}
       </div>
-
-      {/* Background Gradients */}
-      <div className="absolute inset-0">
-        <motion.div
-          className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-r from-blue-500/8 to-purple-500/8 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.1, 1],
-            opacity: [0.3, 0.5, 0.3],
-          }}
-          transition={{
-            duration: 12,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-        <motion.div
-          className="absolute bottom-0 right-1/4 w-96 h-96 bg-gradient-to-r from-emerald-500/8 to-cyan-500/8 rounded-full blur-3xl"
-          animate={{
-            scale: [1.1, 1, 1.1],
-            opacity: [0.4, 0.2, 0.4],
-          }}
-          transition={{
-            duration: 14,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-      </div>
+      {/* Only one static gradient orb per corner for ultra-light effect */}
+      <div className="absolute top-0 left-1/4 w-56 h-56 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-full blur-2xl pointer-events-none" />
+      <div className="absolute bottom-0 right-1/4 w-56 h-56 bg-gradient-to-r from-emerald-500/10 to-cyan-500/10 rounded-full blur-2xl pointer-events-none" />
     </>
   );
 };
-
 export default FloatingElements;

@@ -17,60 +17,40 @@ import {
   Monitor,
   Terminal,
   Mail,
-  Users,
-  Smartphone,
-  Apple,
-  BookOpen,
-  GitPullRequest,
-  FlaskConical,
-  BarChart2,
-  CloudCog,
-  Linkedin,
-  GlobeLock
+  Users
 } from 'lucide-react';
 
 export const skillIcons: Record<string, any> = {
-  "HTML": Code,
-  "CSS": Palette,
-  "JavaScript": Braces,
-  "Bootstrap": Palette,
-  "Ajax": GlobeLock,
-  "jQuery": Braces,
   "React.js": Code2,
+  "TypeScript": FileCode,
+  "HTML5": Code,
+  "CSS3": Palette,
+  "JavaScript": Braces,
+  "Tailwind CSS": Wind,
+  ".NET Core": Layers,
+  "C#": Code2,
   "Node.js": Server,
   "Express.js": Zap,
+  "RESTful APIs": Globe,
+  "GraphQL": Database,
+  "SQL Server": Database,
   "MongoDB": Database,
   "PostgreSQL": Database,
-  "SQLite": Database,
-  "PHP": Code2,
-  "C#": Code2,
-  "ASP.NET Core": Layers,
-  "Vanilla CQRS": BookOpen,
-  "Java EE": FlaskConical,
-  "Android App Development (Kotlin)": Smartphone,
-  "iOS App Development (Swift)": Apple,
-  "Restful APIs": Globe,
+  "Azure": Cloud,
+  "AWS": Cloud,
+  "Docker": Layers,
   "Git": GitBranch,
-  "GitHub": GitPullRequest,
-  "PowerBi": BarChart2,
-  "Azure Cloud": CloudCog,
+  "Visual Studio": Monitor,
+  "VS Code": Terminal,
   "Postman": Mail,
+  "Jenkins": Settings,
+  "Agile": Users
 };
 
 export const skillCategories = [
   {
     title: "Frontend Development",
-    skills: [
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "Bootstrap",
-      "Ajax",
-      "jQuery",
-      "React.js",
-      "Android App Development (Kotlin)",
-      "iOS App Development (Swift)"
-    ],
+    skills: ["React.js", "TypeScript", "HTML5", "CSS3", "JavaScript", "Tailwind CSS"],
     color: "from-blue-500/20 via-purple-500/20 to-pink-500/20",
     borderColor: "border-blue-500/50",
     glowColor: "shadow-blue-500/25",
@@ -78,17 +58,8 @@ export const skillCategories = [
     bgPattern: "bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-600/10 via-purple-600/5 to-transparent"
   },
   {
-    title: "Backend Development",
-    skills: [
-      "ASP.NET Core",
-      "Vanilla CQRS",
-      "Node.js",
-      "Express.js",
-      "Restful APIs",
-      "PHP",
-      "C#",
-      "Java EE"
-    ],
+    title: "Backend Development", 
+    skills: [".NET Core", "C#", "Node.js", "Express.js", "RESTful APIs", "GraphQL"],
     color: "from-emerald-500/20 via-teal-500/20 to-cyan-500/20",
     borderColor: "border-emerald-500/50",
     glowColor: "shadow-emerald-500/25",
@@ -97,13 +68,7 @@ export const skillCategories = [
   },
   {
     title: "Database & Cloud",
-    skills: [
-      "RDBMS",
-      "MongoDB",
-      "PostgreSQL",
-      "SQLite",
-      "Azure Cloud"
-    ],
+    skills: ["SQL Server", "MongoDB", "PostgreSQL", "Azure", "AWS", "Docker"],
     color: "from-orange-500/20 via-red-500/20 to-pink-500/20",
     borderColor: "border-orange-500/50",
     glowColor: "shadow-orange-500/25",
@@ -112,12 +77,7 @@ export const skillCategories = [
   },
   {
     title: "Tools & Others",
-    skills: [
-      "Git",
-      "GitHub",
-      "PowerBi",
-      "Postman"
-    ],
+    skills: ["Git", "Visual Studio", "VS Code", "Postman", "Jenkins", "Agile"],
     color: "from-violet-500/20 via-purple-500/20 to-indigo-500/20",
     borderColor: "border-violet-500/50",
     glowColor: "shadow-violet-500/25",
