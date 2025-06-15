@@ -1,8 +1,13 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Github, Linkedin, MapPin, Phone, Code, Terminal } from 'lucide-react';
 
 const Hero = () => {
+  const [inView, setInView] = useState(false);
+  const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  const nameWords = ['Hardik', 'Anawala'];
+
   const codeSnippet = `const developer = {
   name: "Hardik Anawala",
   role: "Software Developer",
@@ -25,6 +30,57 @@ const Hero = () => {
     hidden: { width: 0 },
     visible: { width: "auto" }
   };
+
+  // Word animation variants
+  const wordVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 20,
+      scale: 0.8
+    },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    }
+  };
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+          setCurrentWordIndex(0);
+          
+          // Start word-by-word animation
+          const timer = setTimeout(() => {
+            setCurrentWordIndex(1);
+          }, 800);
+          
+          return () => clearTimeout(timer);
+        } else {
+          setInView(false);
+          setCurrentWordIndex(0);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    const homeSection = document.getElementById('home');
+    if (homeSection) {
+      observer.observe(homeSection);
+    }
+
+    return () => {
+      if (homeSection) {
+        observer.unobserve(homeSection);
+      }
+    };
+  }, []);
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center px-4 relative overflow-hidden pt-16">
@@ -55,27 +111,25 @@ const Hero = () => {
             Hello, I'm
           </motion.p>
           
-          <motion.h1 
-            className="text-5xl md:text-7xl font-bold text-white mb-6"
-            variants={titleVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          >
-            <motion.span 
-              className="bg-gradient-to-r from-emerald-400 via-cyan-500 to-purple-500 bg-clip-text text-transparent inline-block overflow-hidden whitespace-nowrap"
-              variants={typewriterVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              transition={{ duration: 2, ease: "easeInOut" }}
-            >
-              Hardik Anawala
-            </motion.span>
-          </motion.h1>
-          
-          
+          <div className="text-5xl md:text-7xl font-bold text-white mb-6 min-h-[80px] md:min-h-[100px]">
+            <div className="bg-gradient-to-r from-emerald-400 via-cyan-500 to-purple-500 bg-clip-text text-transparent flex flex-wrap gap-4">
+              <AnimatePresence mode="wait">
+                {inView && nameWords.map((word, index) => (
+                  index <= currentWordIndex && (
+                    <motion.span
+                      key={`${word}-${inView}`}
+                      variants={wordVariants}
+                      initial="hidden"
+                      animate="visible"
+                      className="inline-block"
+                    >
+                      {word}
+                    </motion.span>
+                  )
+                ))}
+              </AnimatePresence>
+            </div>
+          </div>
           
           <motion.div 
             className="flex items-center gap-3 mb-8"
