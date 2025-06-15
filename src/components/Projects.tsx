@@ -1,36 +1,53 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ExternalLink, Github, Code2, Database, Globe } from 'lucide-react';
+import { ExternalLink, Github, Code2, Database, Globe, Zap } from 'lucide-react';
 
 const Projects = () => {
   const projects = [
     {
-      title: "E-Commerce Platform",
-      description: "Full-stack e-commerce solution with React frontend and .NET Core backend",
+      title: "Nishkar - Jewellery Multistore Platform",
+      description: "Comprehensive e-commerce platform for local jewellers and vendors with admin dashboard, vendor portal, and seamless user experience. Features real-time gold price tracking, KYC verification, and secure payment integration.",
       image: "/lovable-uploads/141648ab-a447-4a09-8077-34f047a51327.png",
-      tech: ["React", ".NET Core", "SQL Server", "Azure"],
-      github: "#",
-      demo: "#",
-      icon: Globe
+      tech: ["React.js", "Node.js", "PostgreSQL", "Stripe"],
+      github: "https://github.com/sarvadhiproject/Jewellery-user",
+      demo: null,
+      icon: Globe,
+      duration: "Jan 2024 - Jun 2024",
+      company: "Sarvadhi Solutions Pvt. Ltd."
+    },
+    {
+      title: "Unnati Mechanic - Loyalty Program",
+      description: "Live industry project featuring loyalty platform with coupon scanning, reward system, unique coupon generation service, and Power BI analytics integration. Includes Cashfree payment gateway and Azure Blob Storage.",
+      image: "/lovable-uploads/dd03c944-c23c-4f29-bde4-344101cf6bfb.png", 
+      tech: [".NET Core", "Azure", "Power BI", "Cashfree"],
+      github: null,
+      demo: "https://110.226.126.143:2828/",
+      icon: Zap,
+      duration: "June 2024 - Present",
+      company: "Kombee Technologies"
+    },
+    {
+      title: "Hydroponics IoT Alert System",
+      description: "Automated monitoring and guidance system for hydroponics using IoT technology. Features real-time sensor monitoring, nutrient level alerts, and user-friendly interfaces for optimal plant health management.",
+      image: "/lovable-uploads/141648ab-a447-4a09-8077-34f047a51327.png",
+      tech: ["IoT", "Sensors", "Web App", "Mobile App"],
+      github: null,
+      demo: null,
+      icon: Database,
+      duration: "Nov 2022 - May 2023",
+      company: "IIT Bombay"
     },
     {
       title: "Task Management System",
-      description: "Collaborative project management tool with real-time updates",
-      image: "/lovable-uploads/dd03c944-c23c-4f29-bde4-344101cf6bfb.png", 
-      tech: ["React", "Node.js", "MongoDB", "Socket.io"],
-      github: "#",
-      demo: "#",
-      icon: Code2
-    },
-    {
-      title: "Data Analytics Dashboard",
-      description: "Interactive dashboard for business intelligence and reporting",
-      image: "/lovable-uploads/141648ab-a447-4a09-8077-34f047a51327.png",
-      tech: ["React", "D3.js", ".NET", "PostgreSQL"],
-      github: "#",
-      demo: "#",
-      icon: Database
+      description: "Efficient task management solution with intuitive interface for adding, organizing, and tracking tasks. Built with modern web technologies for seamless task organization and productivity enhancement.",
+      image: "/lovable-uploads/dd03c944-c23c-4f29-bde4-344101cf6bfb.png",
+      tech: ["HTML", "CSS", "PHP", "JavaScript", "MySQL"],
+      github: "https://github.com/hardik098/PHP-Task-manager-system",
+      demo: null,
+      icon: Code2,
+      duration: null,
+      company: null
     }
   ];
 
@@ -60,7 +77,7 @@ const Projects = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {projects.map((project, index) => (
             <motion.div
               key={index}
@@ -83,10 +100,23 @@ const Projects = () => {
               </div>
               
               <div className="p-6">
-                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors">
-                  {project.title}
-                </h3>
-                <p className="text-gray-400 mb-4 leading-relaxed">
+                <div className="mb-3">
+                  <h3 className="text-xl font-bold text-white mb-1 group-hover:text-emerald-400 transition-colors">
+                    {project.title}
+                  </h3>
+                  {project.duration && (
+                    <p className="text-emerald-400 text-sm font-medium">
+                      {project.duration}
+                    </p>
+                  )}
+                  {project.company && (
+                    <p className="text-gray-400 text-sm">
+                      {project.company}
+                    </p>
+                  )}
+                </div>
+                
+                <p className="text-gray-400 mb-4 leading-relaxed text-sm">
                   {project.description}
                 </p>
                 
@@ -102,22 +132,30 @@ const Projects = () => {
                 </div>
                 
                 <div className="flex gap-4">
-                  <a
-                    href={project.github}
-                    className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-slate-700 to-gray-700 rounded-lg text-white hover:from-slate-600 hover:to-gray-600 transition-all duration-300 hover:scale-105"
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    <Github size={16} />
-                    <span className="text-sm">Code</span>
-                  </a>
-                  <a
-                    href={project.demo}
-                    className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-lg text-white hover:from-emerald-400 hover:to-cyan-400 transition-all duration-300 hover:scale-105"
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    <ExternalLink size={16} />
-                    <span className="text-sm">Demo</span>
-                  </a>
+                  {project.github && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-slate-700 to-gray-700 rounded-lg text-white hover:from-slate-600 hover:to-gray-600 transition-all duration-300 hover:scale-105"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <Github size={16} />
+                      <span className="text-sm">Code</span>
+                    </a>
+                  )}
+                  {project.demo && (
+                    <a
+                      href={project.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-lg text-white hover:from-emerald-400 hover:to-cyan-400 transition-all duration-300 hover:scale-105"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <ExternalLink size={16} />
+                      <span className="text-sm">Live Demo</span>
+                    </a>
+                  )}
                 </div>
               </div>
             </motion.div>
