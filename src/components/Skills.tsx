@@ -125,7 +125,7 @@ const Skills = () => {
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: categoryIndex * 0.1 }}
-              className={`bg-gradient-to-br ${category.color} backdrop-blur-sm p-8 rounded-xl border ${category.borderColor} hover:border-opacity-50 transition-all duration-300 hover:transform hover:scale-105 cursor-pointer active:scale-95`}
+              className={`bg-gradient-to-br ${category.color} backdrop-blur-sm p-8 rounded-xl border ${category.borderColor} hover:border-opacity-50 transition-all duration-300 hover:transform hover:scale-105 cursor-pointer active:scale-95 hover:shadow-2xl hover:shadow-cyan-400/20 hover:rotate-2`}
               onClick={handleCardClick}
             >
               <div className="flex items-center justify-center mb-6">

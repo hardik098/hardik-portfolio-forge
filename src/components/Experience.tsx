@@ -55,7 +55,7 @@ const Experience = () => {
                 {/* Experience card */}
                 <div className={`w-5/12 ${index % 2 === 0 ? 'pr-8' : 'pl-8'} animate-fade-in`}>
                   <div 
-                    className="bg-white/5 backdrop-blur-sm border border-cyan-400/20 rounded-2xl p-6 hover:bg-white/10 hover:border-cyan-400/30 transition-all duration-300 relative group cursor-pointer active:scale-95"
+                    className="bg-white/5 backdrop-blur-sm border border-cyan-400/20 rounded-2xl p-6 hover:bg-white/10 hover:border-cyan-400/30 transition-all duration-300 relative group cursor-pointer active:scale-95 hover:shadow-2xl hover:shadow-cyan-400/20 hover:rotate-1"
                     onClick={handleCardClick}
                   >
                     {exp.current && (

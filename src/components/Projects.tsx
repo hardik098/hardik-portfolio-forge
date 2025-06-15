@@ -67,7 +67,7 @@ const Projects = () => {
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group bg-gradient-to-br from-slate-800/50 to-gray-800/50 backdrop-blur-sm rounded-xl overflow-hidden border border-slate-700/50 hover:border-emerald-500/30 transition-all duration-300 hover:transform hover:scale-105 cursor-pointer active:scale-95"
+              className="group bg-gradient-to-br from-slate-800/50 to-gray-800/50 backdrop-blur-sm rounded-xl overflow-hidden border border-slate-700/50 hover:border-emerald-500/30 transition-all duration-300 hover:transform hover:scale-105 cursor-pointer active:scale-95 hover:shadow-2xl hover:shadow-emerald-400/20 hover:-rotate-1"
               onClick={handleCardClick}
             >
               <div className="relative overflow-hidden">
