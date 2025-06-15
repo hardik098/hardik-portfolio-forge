@@ -163,12 +163,12 @@ const Skills = () => {
                         duration: 0.3, 
                         delay: (categoryIndex * 0.1) + (skillIndex * 0.05)
                       }}
-                      className="bg-slate-800/50 backdrop-blur-sm px-4 py-4 rounded-lg border border-slate-700/50 hover:border-cyan-400/30 transition-all duration-300 hover:bg-slate-700/50 cursor-pointer active:scale-90"
+                      className="bg-slate-800/50 backdrop-blur-sm px-4 py-3 rounded-lg border border-slate-700/50 hover:border-cyan-400/30 transition-all duration-300 hover:bg-slate-700/50 cursor-pointer active:scale-90"
                       onClick={handleSkillClick}
                     >
-                      <div className="flex flex-col items-center justify-center gap-2">
-                        <SkillIcon className="w-6 h-6 text-cyan-400" />
-                        <span className="text-gray-300 font-medium text-sm text-center">{skill}</span>
+                      <div className="flex items-center justify-center gap-2">
+                        <SkillIcon className="w-4 h-4 text-cyan-400" />
+                        <span className="text-gray-300 font-medium text-sm">{skill}</span>
                       </div>
                     </motion.div>
                   );
