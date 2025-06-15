@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ExternalLink, Github, Code2, Database, Globe, Zap } from 'lucide-react';
+import { ExternalLink, Github } from 'lucide-react';
 
 const Projects = () => {
   const projects = [
@@ -12,7 +12,6 @@ const Projects = () => {
       tech: ["React.js", "Node.js", "PostgreSQL", "Stripe"],
       github: "https://github.com/sarvadhiproject/Jewellery-user",
       demo: null,
-      icon: Globe,
       duration: "Jan 2024 - Jun 2024",
       company: "Sarvadhi Solutions Pvt. Ltd."
     },
@@ -23,7 +22,6 @@ const Projects = () => {
       tech: [".NET Core", "Azure", "Power BI", "Cashfree"],
       github: null,
       demo: "https://110.226.126.143:2828/",
-      icon: Zap,
       duration: "June 2024 - Present",
       company: "Kombee Technologies"
     },
@@ -34,7 +32,6 @@ const Projects = () => {
       tech: ["IoT", "Sensors", "Web App", "Mobile App"],
       github: null,
       demo: null,
-      icon: Database,
       duration: "Nov 2022 - May 2023",
       company: "IIT Bombay"
     },
@@ -45,7 +42,6 @@ const Projects = () => {
       tech: ["HTML", "CSS", "PHP", "JavaScript", "MySQL"],
       github: "https://github.com/hardik098/PHP-Task-manager-system",
       demo: null,
-      icon: Code2,
       duration: null,
       company: null
     }
@@ -94,9 +90,6 @@ const Projects = () => {
                   className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div className="absolute top-4 right-4">
-                  <project.icon className="w-8 h-8 text-emerald-400" />
-                </div>
               </div>
               
               <div className="p-6">
