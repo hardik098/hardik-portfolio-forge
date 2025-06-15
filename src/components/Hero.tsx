@@ -31,7 +31,7 @@ const Hero = () => {
     visible: { width: "auto" }
   };
 
-  // Word animation variants
+  // Word animation variants - fixed TypeScript error
   const wordVariants = {
     hidden: { 
       opacity: 0, 
@@ -41,11 +41,7 @@ const Hero = () => {
     visible: { 
       opacity: 1, 
       y: 0,
-      scale: 1,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut"
-      }
+      scale: 1
     }
   };
 
@@ -121,6 +117,10 @@ const Hero = () => {
                       variants={wordVariants}
                       initial="hidden"
                       animate="visible"
+                      transition={{ 
+                        duration: 0.6, 
+                        ease: [0.6, -0.05, 0.01, 0.99] 
+                      }}
                       className="inline-block"
                     >
                       {word}
