@@ -11,6 +11,7 @@ import Skills from '../components/Skills';
 import Contact from '../components/Contact';
 import ThreeBackground from '../components/ThreeBackground';
 import AnimatedBackground from '../components/AnimatedBackground';
+import { Toaster } from '@/components/ui/toaster';
 
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -84,6 +85,8 @@ const Index = () => {
           <Contact />
         </motion.div>
       </div>
+      
+      <Toaster />
     </div>
   );
 };

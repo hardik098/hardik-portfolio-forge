@@ -2,8 +2,51 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Linkedin, Github, Send } from 'lucide-react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
+import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { useToast } from '@/components/ui/use-toast';
+
+const formSchema = z.object({
+  name: z.string().min(2, {
+    message: "Name must be at least 2 characters.",
+  }),
+  email: z.string().email({
+    message: "Please enter a valid email address.",
+  }),
+  subject: z.string().min(5, {
+    message: "Subject must be at least 5 characters.",
+  }),
+  message: z.string().min(10, {
+    message: "Message must be at least 10 characters.",
+  }),
+});
 
 const Contact = () => {
+  const { toast } = useToast();
+  
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      subject: "",
+      message: "",
+    },
+  });
+
+  const onSubmit = (values: z.infer<typeof formSchema>) => {
+    console.log(values);
+    toast({
+      title: "Message sent!",
+      description: "Thank you for your message. I'll get back to you soon.",
+    });
+    form.reset();
+  };
+
   const contactInfo = [
     {
       icon: Mail,
@@ -126,47 +169,87 @@ const Contact = () => {
             className="bg-gradient-to-br from-slate-800/50 to-gray-800/50 backdrop-blur-sm p-8 rounded-xl border border-slate-700/50"
           >
             <h3 className="text-2xl font-bold text-white mb-6">Send Message</h3>
-            <form className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <input
-                    type="text"
-                    placeholder="Your Name"
-                    className="w-full px-4 py-3 bg-slate-900/50 border border-slate-700 rounded-lg text-white placeholder-gray-400 focus:border-emerald-500 focus:outline-none transition-colors"
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <FormField
+                    control={form.control}
+                    name="name"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormControl>
+                          <Input
+                            placeholder="Your Name"
+                            className="bg-slate-900/50 border-slate-700 text-white placeholder-gray-400 focus:border-emerald-500"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage className="text-pink-400" />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormControl>
+                          <Input
+                            type="email"
+                            placeholder="Your Email"
+                            className="bg-slate-900/50 border-slate-700 text-white placeholder-gray-400 focus:border-emerald-500"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage className="text-pink-400" />
+                      </FormItem>
+                    )}
                   />
                 </div>
-                <div>
-                  <input
-                    type="email"
-                    placeholder="Your Email"
-                    className="w-full px-4 py-3 bg-slate-900/50 border border-slate-700 rounded-lg text-white placeholder-gray-400 focus:border-emerald-500 focus:outline-none transition-colors"
-                  />
-                </div>
-              </div>
-              <div>
-                <input
-                  type="text"
-                  placeholder="Subject"
-                  className="w-full px-4 py-3 bg-slate-900/50 border border-slate-700 rounded-lg text-white placeholder-gray-400 focus:border-emerald-500 focus:outline-none transition-colors"
+                <FormField
+                  control={form.control}
+                  name="subject"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        <Input
+                          placeholder="Subject"
+                          className="bg-slate-900/50 border-slate-700 text-white placeholder-gray-400 focus:border-emerald-500"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage className="text-pink-400" />
+                    </FormItem>
+                  )}
                 />
-              </div>
-              <div>
-                <textarea
-                  rows={5}
-                  placeholder="Your Message"
-                  className="w-full px-4 py-3 bg-slate-900/50 border border-slate-700 rounded-lg text-white placeholder-gray-400 focus:border-emerald-500 focus:outline-none transition-colors resize-none"
-                ></textarea>
-              </div>
-              <motion.button
-                type="submit"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-lg text-white font-medium hover:from-emerald-400 hover:to-cyan-400 transition-all duration-300"
-              >
-                <Send size={20} />
-                <span>Send Message</span>
-              </motion.button>
-            </form>
+                <FormField
+                  control={form.control}
+                  name="message"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        <Textarea
+                          rows={5}
+                          placeholder="Your Message"
+                          className="bg-slate-900/50 border-slate-700 text-white placeholder-gray-400 focus:border-emerald-500 resize-none"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage className="text-pink-400" />
+                    </FormItem>
+                  )}
+                />
+                <motion.button
+                  type="submit"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-lg text-white font-medium hover:from-emerald-400 hover:to-cyan-400 transition-all duration-300"
+                >
+                  <Send size={20} />
+                  <span>Send Message</span>
+                </motion.button>
+              </form>
+            </Form>
           </motion.div>
         </div>
       </div>

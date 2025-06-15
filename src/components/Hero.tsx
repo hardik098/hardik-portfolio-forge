@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Github, Linkedin, MapPin, Phone, Code, Terminal } from 'lucide-react';
@@ -47,6 +46,15 @@ const Hero = () => {
             <span className="text-emerald-400 font-mono text-lg">~/portfolio</span>
           </motion.div>
           
+          <motion.p 
+            className="text-2xl text-gray-300 mb-2"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+          >
+            Hello, I'm
+          </motion.p>
+          
           <motion.h1 
             className="text-5xl md:text-7xl font-bold text-white mb-6"
             variants={titleVariants}
@@ -66,6 +74,8 @@ const Hero = () => {
               Hardik Anawala
             </motion.span>
           </motion.h1>
+          
+          
           
           <motion.div 
             className="flex items-center gap-3 mb-8"
