@@ -30,7 +30,7 @@ const Projects = () => {
     {
       title: "Hydroponics IoT Alert System",
       description: "Automated monitoring and guidance system for hydroponics using IoT technology. Features real-time sensor monitoring, nutrient level alerts, and user-friendly interfaces for optimal plant health management.",
-      image: "/lovable-uploads/141648ab-a447-4a09-8077-34f047a51327.png",
+      image: "/lovable-uploads/d067b759-90ce-4284-a07a-9a3350cf2fb5.png",
       tech: ["IoT", "Sensors", "Web App", "Mobile App"],
       github: null,
       demo: null,
