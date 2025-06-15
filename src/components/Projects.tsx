@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ExternalLink, Github, Code2, Database, Globe } from 'lucide-react';
@@ -33,6 +34,14 @@ const Projects = () => {
     }
   ];
 
+  const handleCardClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    const card = e.currentTarget;
+    card.style.transform = 'scale(0.95)';
+    setTimeout(() => {
+      card.style.transform = 'scale(1)';
+    }, 150);
+  };
+
   return (
     <section id="projects" className="py-20 px-4 bg-transparent relative">
       <div className="max-w-7xl mx-auto">
@@ -58,7 +67,8 @@ const Projects = () => {
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group bg-gradient-to-br from-slate-800/50 to-gray-800/50 backdrop-blur-sm rounded-xl overflow-hidden border border-slate-700/50 hover:border-emerald-500/30 transition-all duration-300 hover:transform hover:scale-105"
+              className="group bg-gradient-to-br from-slate-800/50 to-gray-800/50 backdrop-blur-sm rounded-xl overflow-hidden border border-slate-700/50 hover:border-emerald-500/30 transition-all duration-300 hover:transform hover:scale-105 cursor-pointer active:scale-95"
+              onClick={handleCardClick}
             >
               <div className="relative overflow-hidden">
                 <img 
@@ -95,6 +105,7 @@ const Projects = () => {
                   <a
                     href={project.github}
                     className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-slate-700 to-gray-700 rounded-lg text-white hover:from-slate-600 hover:to-gray-600 transition-all duration-300 hover:scale-105"
+                    onClick={(e) => e.stopPropagation()}
                   >
                     <Github size={16} />
                     <span className="text-sm">Code</span>
@@ -102,6 +113,7 @@ const Projects = () => {
                   <a
                     href={project.demo}
                     className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-lg text-white hover:from-emerald-400 hover:to-cyan-400 transition-all duration-300 hover:scale-105"
+                    onClick={(e) => e.stopPropagation()}
                   >
                     <ExternalLink size={16} />
                     <span className="text-sm">Demo</span>

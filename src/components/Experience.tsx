@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Calendar, MapPin } from 'lucide-react';
 
@@ -20,6 +21,14 @@ const Experience = () => {
       logo: "/lovable-uploads/85f04446-3e61-43fe-8a09-bd4885f7674a.png"
     }
   ];
+
+  const handleCardClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    const card = e.currentTarget;
+    card.style.transform = 'scale(0.95)';
+    setTimeout(() => {
+      card.style.transform = 'scale(1)';
+    }, 150);
+  };
 
   return (
     <section id="experience" className="py-20 px-4 relative">
@@ -45,7 +54,10 @@ const Experience = () => {
                 
                 {/* Experience card */}
                 <div className={`w-5/12 ${index % 2 === 0 ? 'pr-8' : 'pl-8'} animate-fade-in`}>
-                  <div className="bg-white/5 backdrop-blur-sm border border-cyan-400/20 rounded-2xl p-6 hover:bg-white/10 hover:border-cyan-400/30 transition-all duration-300 relative group">
+                  <div 
+                    className="bg-white/5 backdrop-blur-sm border border-cyan-400/20 rounded-2xl p-6 hover:bg-white/10 hover:border-cyan-400/30 transition-all duration-300 relative group cursor-pointer active:scale-95"
+                    onClick={handleCardClick}
+                  >
                     {exp.current && (
                       <div className="absolute -top-3 right-4">
                         <span className="bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 text-black px-3 py-1 rounded-full text-xs font-semibold shadow-lg">
@@ -66,7 +78,11 @@ const Experience = () => {
                       </div>
                     </div>
                     
-                    <h3 className="text-lg font-bold text-white mb-2 text-center group-hover:text-cyan-400 transition-colors">
+                    <h3 className={`text-lg font-bold text-white mb-2 text-center transition-colors ${
+                      exp.company === "Kombee Technologies" 
+                        ? "group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-pink-400 group-hover:bg-clip-text group-hover:text-transparent" 
+                        : "group-hover:text-cyan-400"
+                    }`}>
                       {exp.company}
                     </h3>
                     <p className="text-cyan-400 font-semibold text-center mb-4">{exp.position}</p>

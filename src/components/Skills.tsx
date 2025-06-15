@@ -83,6 +83,23 @@ const Skills = () => {
     }
   ];
 
+  const handleCardClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    const card = e.currentTarget;
+    card.style.transform = 'scale(0.95)';
+    setTimeout(() => {
+      card.style.transform = 'scale(1)';
+    }, 150);
+  };
+
+  const handleSkillClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
+    const skill = e.currentTarget;
+    skill.style.transform = 'scale(0.9)';
+    setTimeout(() => {
+      skill.style.transform = 'scale(1)';
+    }, 100);
+  };
+
   return (
     <section id="skills" className="py-20 px-4 bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900">
       <div className="max-w-6xl mx-auto">
@@ -90,7 +107,6 @@ const Skills = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
@@ -109,8 +125,8 @@ const Skills = () => {
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: categoryIndex * 0.1 }}
-              viewport={{ once: true }}
-              className={`bg-gradient-to-br ${category.color} backdrop-blur-sm p-8 rounded-xl border ${category.borderColor} hover:border-opacity-50 transition-all duration-300 hover:transform hover:scale-105`}
+              className={`bg-gradient-to-br ${category.color} backdrop-blur-sm p-8 rounded-xl border ${category.borderColor} hover:border-opacity-50 transition-all duration-300 hover:transform hover:scale-105 cursor-pointer active:scale-95`}
+              onClick={handleCardClick}
             >
               <div className="flex items-center justify-center mb-6">
                 <motion.div
@@ -147,8 +163,8 @@ const Skills = () => {
                         duration: 0.3, 
                         delay: (categoryIndex * 0.1) + (skillIndex * 0.05)
                       }}
-                      viewport={{ once: true }}
-                      className="bg-slate-800/50 backdrop-blur-sm px-4 py-3 rounded-lg border border-slate-700/50 hover:border-cyan-400/30 transition-all duration-300 hover:bg-slate-700/50 cursor-pointer"
+                      className="bg-slate-800/50 backdrop-blur-sm px-4 py-3 rounded-lg border border-slate-700/50 hover:border-cyan-400/30 transition-all duration-300 hover:bg-slate-700/50 cursor-pointer active:scale-90"
+                      onClick={handleSkillClick}
                     >
                       <div className="flex items-center justify-center gap-2">
                         <SkillIcon className="w-4 h-4 text-cyan-400" />
