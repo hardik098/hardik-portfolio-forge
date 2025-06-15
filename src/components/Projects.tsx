@@ -8,7 +8,7 @@ const Projects = () => {
     {
       title: "Nishkar - Jewellery Multistore Platform",
       description: "Comprehensive e-commerce platform for local jewellers and vendors with admin dashboard, vendor portal, and seamless user experience. Features real-time gold price tracking, KYC verification, and secure payment integration.",
-      image: "/lovable-uploads/141648ab-a447-4a09-8077-34f047a51327.png",
+      image: "/lovable-uploads/eeb63961-4e4d-4ad1-b31e-02525eaaf31a.png",
       tech: ["React.js", "Node.js", "PostgreSQL", "Stripe"],
       github: "https://github.com/sarvadhiproject/Jewellery-user",
       demo: null,
