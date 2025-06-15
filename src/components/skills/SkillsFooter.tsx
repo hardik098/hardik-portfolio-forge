@@ -6,19 +6,19 @@ import { Zap } from 'lucide-react';
 const SkillsFooter = () => {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: 0.3 }}
+      transition={{ duration: 0.4, delay: 0.2 }}
       className="text-center mt-20"
     >
       <motion.div
         className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border border-cyan-500/30 rounded-full backdrop-blur-sm"
-        whileHover={{ scale: 1.02 }}
+        whileHover={{ scale: 1.02, transition: { duration: 0.15 } }}
         animate={{
-          y: [0, -3, 0],
+          y: [0, -2, 0],
         }}
         transition={{
-          duration: 4,
+          duration: 3,
           repeat: Infinity,
           ease: "easeInOut",
         }}
