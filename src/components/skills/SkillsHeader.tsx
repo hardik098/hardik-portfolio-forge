@@ -8,31 +8,35 @@ const SkillsHeader = () => {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4 }}
+      transition={{ duration: 0.6, type: "tween" }}
       className="text-center mb-20"
     >
-      {/* Simplified Floating Icon */}
+      {/* Optimized Floating Icon with will-change */}
       <motion.div
         className="inline-flex items-center justify-center mb-8"
+        style={{ willChange: 'transform' }}
         animate={{
-          y: [0, -4, 0],
+          y: [0, -8, 0],
         }}
         transition={{
-          duration: 4,
+          duration: 6,
           repeat: Infinity,
           ease: "easeInOut",
+          type: "tween",
         }}
       >
         <div className="relative">
           <motion.div
-            className="absolute inset-0 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 rounded-full blur-lg opacity-30"
+            className="absolute inset-0 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 rounded-full blur-lg opacity-40"
+            style={{ willChange: 'transform' }}
             animate={{
-              scale: [1, 1.1, 1],
+              scale: [1, 1.2, 1],
             }}
             transition={{
-              duration: 3,
+              duration: 4,
               repeat: Infinity,
               ease: "easeInOut",
+              type: "tween",
             }}
           />
           <div className="relative p-4 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 rounded-full">
@@ -43,9 +47,9 @@ const SkillsHeader = () => {
 
       <motion.h2
         className="text-5xl md:text-7xl font-bold text-white mb-8"
-        initial={{ opacity: 0, scale: 0.95 }}
+        initial={{ opacity: 0, scale: 0.9 }}
         whileInView={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.4, delay: 0.1 }}
+        transition={{ duration: 0.6, delay: 0.1, type: "tween" }}
       >
         Technical{" "}
         <span className="relative">
@@ -54,13 +58,15 @@ const SkillsHeader = () => {
           </span>
           <motion.div
             className="absolute -top-2 -right-2"
+            style={{ willChange: 'transform' }}
             animate={{
               rotate: [0, 360],
             }}
             transition={{
-              duration: 6,
+              duration: 8,
               repeat: Infinity,
               ease: "linear",
+              type: "tween",
             }}
           >
             <Star className="w-6 h-6 text-yellow-400 fill-yellow-400" />
@@ -72,17 +78,19 @@ const SkillsHeader = () => {
         className="w-32 h-1 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 mx-auto mb-8 rounded-full relative"
         initial={{ scaleX: 0 }}
         whileInView={{ scaleX: 1 }}
-        transition={{ duration: 0.6, delay: 0.2 }}
+        transition={{ duration: 0.8, delay: 0.2, type: "tween" }}
       >
         <motion.div
           className="absolute inset-0 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 rounded-full blur-sm"
+          style={{ willChange: 'opacity' }}
           animate={{
-            opacity: [0.4, 0.6, 0.4],
+            opacity: [0.5, 0.8, 0.5],
           }}
           transition={{
-            duration: 2,
+            duration: 3,
             repeat: Infinity,
             ease: "easeInOut",
+            type: "tween",
           }}
         />
       </motion.div>
@@ -91,7 +99,7 @@ const SkillsHeader = () => {
         className="text-gray-300 text-xl max-w-3xl mx-auto leading-relaxed"
         initial={{ opacity: 0, y: 10 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4, delay: 0.3 }}
+        transition={{ duration: 0.6, delay: 0.3, type: "tween" }}
       >
         Crafting digital experiences with cutting-edge technologies and creative innovation
       </motion.p>
