@@ -1,34 +1,14 @@
-
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { Github, Linkedin, MapPin, Phone, Code, Terminal } from 'lucide-react';
 
 const Hero = () => {
-  const [displayedCode, setDisplayedCode] = useState('');
-  const [currentIndex, setCurrentIndex] = useState(0);
-  
   const codeSnippet = `const developer = {
   name: "Hardik Anawala",
   role: "Software Developer",
   skills: [".NET", "React", "Node.js"],
   passion: "Creating innovative solutions"
 };`;
-
-  // Continuous typing animation
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (currentIndex < codeSnippet.length) {
-        setDisplayedCode(prev => prev + codeSnippet[currentIndex]);
-        setCurrentIndex(prev => prev + 1);
-      } else {
-        // Reset and start over
-        setDisplayedCode('');
-        setCurrentIndex(0);
-      }
-    }, 80); // Adjust speed as needed
-
-    return () => clearInterval(interval);
-  }, [currentIndex, codeSnippet]);
 
   // Animation variants for text - simplified without transitions
   const titleVariants = {
@@ -186,7 +166,7 @@ const Hero = () => {
           </motion.div>
         </motion.div>
 
-        {/* Right side - Code snippet with continuous typing animation */}
+        {/* Right side - Code snippet */}
         <motion.div 
           className="lg:flex justify-center hidden"
           initial={{ opacity: 0, x: 50 }}
@@ -219,20 +199,15 @@ const Hero = () => {
                 developer.js
               </motion.span>
             </div>
-            <div className="text-emerald-400 leading-6 min-h-[120px]">
-              <pre>
-                <code>
-                  {displayedCode}
-                  <motion.span
-                    className="inline-block w-2 h-5 bg-emerald-400 ml-1"
-                    animate={{ opacity: [1, 0, 1] }}
-                    transition={{ duration: 1, repeat: Infinity }}
-                  >
-                    |
-                  </motion.span>
-                </code>
-              </pre>
-            </div>
+            <motion.pre 
+              className="text-emerald-400 leading-6"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ delay: 1, duration: 2 }}
+              viewport={{ once: true }}
+            >
+              <code>{codeSnippet}</code>
+            </motion.pre>
           </motion.div>
         </motion.div>
       </div>
