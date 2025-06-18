@@ -1,140 +1,107 @@
 
-import React, { useRef } from 'react';
+import React, { useRef, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
+import { Torus, Sphere } from '@react-three/drei';
 import * as THREE from 'three';
 
-const StarField = () => {
-  const pointsRef = useRef<THREE.Points>(null);
-  
-  const positions = React.useMemo(() => {
-    const positions = new Float32Array(2000 * 3);
-    for (let i = 0; i < 2000; i++) {
-      positions[i * 3] = (Math.random() - 0.5) * 100;
-      positions[i * 3 + 1] = (Math.random() - 0.5) * 100;
-      positions[i * 3 + 2] = (Math.random() - 0.5) * 100;
-    }
-    return positions;
-  }, []);
-
-  useFrame((state, delta) => {
-    if (pointsRef.current) {
-      pointsRef.current.rotation.x += delta * 0.05;
-      pointsRef.current.rotation.y += delta * 0.02;
-    }
-  });
-
-  return (
-    <points ref={pointsRef}>
-      <bufferGeometry>
-        <bufferAttribute
-          attach="attributes-position"
-          count={positions.length / 3}
-          array={positions}
-          itemSize={3}
-        />
-      </bufferGeometry>
-      <pointsMaterial
-        color="#00ff41"
-        size={0.5}
-        sizeAttenuation={true}
-        transparent={true}
-        opacity={0.8}
-      />
-    </points>
-  );
-};
-
-const FloatingCube = () => {
+const FloatingTorus = ({ position, rotationSpeed, scale }: { position: [number, number, number], rotationSpeed: number, scale: number }) => {
   const meshRef = useRef<THREE.Mesh>(null);
   
   useFrame((state) => {
     if (meshRef.current) {
-      meshRef.current.rotation.x = state.clock.elapsedTime * 0.4;
-      meshRef.current.rotation.y = state.clock.elapsedTime * 0.3;
-      meshRef.current.position.y = Math.sin(state.clock.elapsedTime * 0.5) * 3;
-      meshRef.current.position.x = Math.cos(state.clock.elapsedTime * 0.3) * 2;
+      meshRef.current.rotation.x += rotationSpeed;
+      meshRef.current.rotation.y += rotationSpeed * 0.7;
+      meshRef.current.position.y = position[1] + Math.sin(state.clock.elapsedTime + position[0]) * 0.5;
     }
   });
 
   return (
-    <mesh ref={meshRef} position={[4, 0, -8]}>
-      <boxGeometry args={[2, 2, 2]} />
-      <meshStandardMaterial 
-        color="#0066ff" 
-        wireframe={true}
-        transparent={true}
-        opacity={0.8}
-      />
-    </mesh>
-  );
-};
-
-const FloatingSphere = () => {
-  const meshRef = useRef<THREE.Mesh>(null);
-  
-  useFrame((state) => {
-    if (meshRef.current) {
-      meshRef.current.rotation.x = state.clock.elapsedTime * 0.3;
-      meshRef.current.rotation.z = state.clock.elapsedTime * 0.2;
-      meshRef.current.position.x = Math.sin(state.clock.elapsedTime * 0.4) * 4;
-      meshRef.current.position.y = Math.cos(state.clock.elapsedTime * 0.6) * 3;
-    }
-  });
-
-  return (
-    <mesh ref={meshRef} position={[-4, 0, -6]}>
-      <sphereGeometry args={[1.5, 32, 32]} />
-      <meshStandardMaterial 
-        color="#00ff41" 
-        transparent={true} 
-        opacity={0.6}
-        wireframe={false}
-      />
-    </mesh>
-  );
-};
-
-const FloatingTorus = () => {
-  const meshRef = useRef<THREE.Mesh>(null);
-  
-  useFrame((state) => {
-    if (meshRef.current) {
-      meshRef.current.rotation.x = state.clock.elapsedTime * 0.2;
-      meshRef.current.rotation.y = state.clock.elapsedTime * 0.4;
-      meshRef.current.position.z = Math.sin(state.clock.elapsedTime * 0.3) * 2;
-    }
-  });
-
-  return (
-    <mesh ref={meshRef} position={[0, 3, -10]}>
-      <torusGeometry args={[2, 0.8, 16, 100]} />
+    <Torus
+      ref={meshRef}
+      position={position}
+      scale={scale}
+      args={[1, 0.3, 8, 16]}
+    >
       <meshStandardMaterial 
         color="#ffffff" 
         transparent={true} 
-        opacity={0.4}
+        opacity={0.8}
         wireframe={true}
+        emissive="#ffffff"
+        emissiveIntensity={0.2}
       />
-    </mesh>
+    </Torus>
+  );
+};
+
+const FloatingSphere = ({ position, scale }: { position: [number, number, number], scale: number }) => {
+  const meshRef = useRef<THREE.Mesh>(null);
+  
+  useFrame((state) => {
+    if (meshRef.current) {
+      meshRef.current.position.y = position[1] + Math.sin(state.clock.elapsedTime * 0.5 + position[0]) * 1;
+      meshRef.current.rotation.x += 0.01;
+      meshRef.current.rotation.z += 0.01;
+    }
+  });
+
+  return (
+    <Sphere
+      ref={meshRef}
+      position={position}
+      scale={scale}
+      args={[1, 16, 16]}
+    >
+      <meshStandardMaterial 
+        color="#ffffff" 
+        transparent={true} 
+        opacity={0.6}
+        wireframe={true}
+        emissive="#ffffff"
+        emissiveIntensity={0.1}
+      />
+    </Sphere>
   );
 };
 
 const ThreeBackground = () => {
+  const torusElements = useMemo(() => [
+    { position: [-8, 2, -5] as [number, number, number], rotationSpeed: 0.01, scale: 1 },
+    { position: [8, -2, -8] as [number, number, number], rotationSpeed: -0.015, scale: 1.2 },
+    { position: [-6, -4, -10] as [number, number, number], rotationSpeed: 0.008, scale: 0.8 },
+    { position: [10, 4, -6] as [number, number, number], rotationSpeed: -0.012, scale: 1.1 },
+    { position: [0, 6, -12] as [number, number, number], rotationSpeed: 0.009, scale: 0.9 },
+    { position: [-10, 0, -7] as [number, number, number], rotationSpeed: -0.01, scale: 1.3 },
+    { position: [6, -6, -9] as [number, number, number], rotationSpeed: 0.011, scale: 0.7 },
+    { position: [-4, 8, -11] as [number, number, number], rotationSpeed: -0.008, scale: 1 },
+  ], []);
+
+  const sphereElements = useMemo(() => [
+    { position: [12, 1, -8] as [number, number, number], scale: 0.5 },
+    { position: [-12, -3, -6] as [number, number, number], scale: 0.4 },
+    { position: [4, 7, -10] as [number, number, number], scale: 0.6 },
+    { position: [-8, 5, -9] as [number, number, number], scale: 0.3 },
+    { position: [14, -5, -7] as [number, number, number], scale: 0.5 },
+  ], []);
+
   return (
-    <div className="fixed inset-0 -z-10 pointer-events-none">
+    <div className="fixed inset-0 -z-10">
       <Canvas
-        camera={{ position: [0, 0, 10], fov: 60 }}
+        camera={{ position: [0, 0, 5], fov: 75 }}
         style={{ background: 'transparent' }}
         gl={{ alpha: true, antialias: true }}
       >
-        <ambientLight intensity={0.4} color="#ffffff" />
-        <pointLight position={[10, 10, 10]} intensity={1.2} color="#00ff41" />
-        <pointLight position={[-10, -10, -5]} intensity={0.8} color="#0066ff" />
-        <directionalLight position={[5, 5, 5]} intensity={0.6} color="#ffffff" />
+        <ambientLight intensity={0.3} />
+        <pointLight position={[10, 10, 10]} intensity={0.5} />
+        <pointLight position={[-10, -10, -10]} intensity={0.3} />
         
-        <StarField />
-        <FloatingCube />
-        <FloatingSphere />
-        <FloatingTorus />
+        {torusElements.map((props, index) => (
+          <FloatingTorus key={`torus-${index}`} {...props} />
+        ))}
+        
+        {sphereElements.map((props, index) => (
+          <FloatingSphere key={`sphere-${index}`} {...props} />
+        ))}
       </Canvas>
     </div>
   );
