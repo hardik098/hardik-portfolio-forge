@@ -1,7 +1,6 @@
 
 import React, { useRef, useMemo, Suspense } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Torus, Sphere } from '@react-three/drei';
 import * as THREE from 'three';
 
 const FloatingTorus = ({ position, rotationSpeed, scale }: { position: [number, number, number], rotationSpeed: number, scale: number }) => {
@@ -16,21 +15,15 @@ const FloatingTorus = ({ position, rotationSpeed, scale }: { position: [number, 
   });
 
   return (
-    <Torus
-      ref={meshRef}
-      position={position}
-      scale={scale}
-      args={[1, 0.3, 8, 16]}
-    >
+    <mesh ref={meshRef} position={position} scale={scale}>
+      <torusGeometry args={[1, 0.3, 8, 16]} />
       <meshStandardMaterial 
-        color="#ffffff" 
-        transparent 
+        color="#ffffff"
+        transparent
         opacity={0.9}
         wireframe
-        emissive="#ffffff"
-        emissiveIntensity={0.3}
       />
-    </Torus>
+    </mesh>
   );
 };
 
@@ -46,21 +39,15 @@ const FloatingSphere = ({ position, scale }: { position: [number, number, number
   });
 
   return (
-    <Sphere
-      ref={meshRef}
-      position={position}
-      scale={scale}
-      args={[1, 16, 16]}
-    >
+    <mesh ref={meshRef} position={position} scale={scale}>
+      <sphereGeometry args={[1, 16, 16]} />
       <meshStandardMaterial 
-        color="#ffffff" 
-        transparent 
+        color="#ffffff"
+        transparent
         opacity={0.8}
         wireframe
-        emissive="#ffffff"
-        emissiveIntensity={0.2}
       />
-    </Sphere>
+    </mesh>
   );
 };
 
@@ -115,13 +102,11 @@ const ThreeBackground = () => {
         gl={{ 
           alpha: true, 
           antialias: true,
-          powerPreference: "high-performance",
-          failIfMajorPerformanceCaveat: false
+          powerPreference: "high-performance"
         }}
         onCreated={({ gl }) => {
           gl.setClearColor(0x000000, 0);
         }}
-        fallback={<div />}
       >
         <Suspense fallback={null}>
           <Scene />
