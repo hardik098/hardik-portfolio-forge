@@ -1,19 +1,22 @@
-
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const navItems = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Experience', href: '#experience' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Skills', href: '#skills' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Home', href: '#home', type: 'scroll' },
+    { name: 'About', href: '#about', type: 'scroll' },
+    { name: 'Experience', href: '#experience', type: 'scroll' },
+    { name: 'Projects', href: '#projects', type: 'scroll' },
+    { name: 'Skills', href: '#skills', type: 'scroll' },
+    { name: 'Contact', href: '#contact', type: 'scroll' },
+    { name: '3D Components', href: '/threejs-showcase', type: 'navigate' },
   ];
 
   // Color schemes for different sections
@@ -68,6 +71,9 @@ const Navbar = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
       
+      // Only track sections on home page
+      if (location.pathname !== '/') return;
+      
       // Get all sections
       const sections = ['home', 'about', 'experience', 'projects', 'skills', 'contact'];
       const scrollPosition = window.scrollY + 100; // Offset for navbar height
@@ -107,7 +113,23 @@ const Navbar = () => {
     window.addEventListener('scroll', handleScroll);
     handleScroll(); // Call once to set initial state
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [location.pathname]);
+
+  const handleNavigation = (item: typeof navItems[0]) => {
+    if (item.type === 'navigate') {
+      navigate(item.href);
+    } else {
+      // Handle scroll navigation (only works on home page)
+      if (location.pathname !== '/') {
+        navigate('/');
+        // Wait for navigation then scroll
+        setTimeout(() => scrollToSection(item.href), 100);
+      } else {
+        scrollToSection(item.href);
+      }
+    }
+    setIsMobileMenuOpen(false);
+  };
 
   const scrollToSection = (href: string) => {
     const sectionId = href.substring(1);
@@ -121,7 +143,6 @@ const Navbar = () => {
       const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
       window.scrollTo({ top: y, behavior: 'smooth' });
     }
-    setIsMobileMenuOpen(false);
   };
 
   return (
@@ -133,20 +154,24 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex-shrink-0">
-            <span className={`text-2xl font-bold bg-gradient-to-r ${currentColors.logo} bg-clip-text text-transparent transition-all duration-500`}>
+            <button
+              onClick={() => navigate('/')}
+              className={`text-2xl font-bold bg-gradient-to-r ${currentColors.logo} bg-clip-text text-transparent transition-all duration-500 cursor-pointer`}
+            >
               HA
-            </span>
+            </button>
           </div>
           
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-8">
               {navItems.map((item) => {
                 const sectionId = item.href.substring(1);
-                const isActive = activeSection === sectionId;
+                const isActive = (item.type === 'scroll' && activeSection === sectionId) || 
+                                (item.type === 'navigate' && location.pathname === item.href);
                 return (
                   <button
                     key={item.name}
-                    onClick={() => scrollToSection(item.href)}
+                    onClick={() => handleNavigation(item)}
                     className={`px-3 py-2 text-sm font-medium transition-all duration-300 relative group ${
                       isActive 
                         ? `${currentColors.activeColor} font-bold scale-110` 
@@ -179,11 +204,12 @@ const Navbar = () => {
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             {navItems.map((item) => {
               const sectionId = item.href.substring(1);
-              const isActive = activeSection === sectionId;
+              const isActive = (item.type === 'scroll' && activeSection === sectionId) || 
+                              (item.type === 'navigate' && location.pathname === item.href);
               return (
                 <button
                   key={item.name}
-                  onClick={() => scrollToSection(item.href)}
+                  onClick={() => handleNavigation(item)}
                   className={`block px-3 py-2 text-base font-medium w-full text-left transition-all duration-300 rounded-md ${
                     isActive 
                       ? `${currentColors.activeColor} font-bold bg-white/10` 
