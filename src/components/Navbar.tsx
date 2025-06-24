@@ -16,7 +16,6 @@ const Navbar = () => {
     { name: 'Projects', href: '#projects', type: 'scroll' },
     { name: 'Skills', href: '#skills', type: 'scroll' },
     { name: 'Contact', href: '#contact', type: 'scroll' },
-    { name: '3D Components', href: '/threejs-showcase', type: 'navigate' },
   ];
 
   // Color schemes for different sections
