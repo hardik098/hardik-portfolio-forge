@@ -16,12 +16,13 @@ const FloatingTorus = ({ position, rotationSpeed, scale }: { position: [number, 
 
   return (
     <mesh ref={meshRef} position={position} scale={scale}>
-      <torusGeometry args={[1, 0.3, 8, 16]} />
+      <torusGeometry args={[1, 0.3, 16, 32]} />
       <meshStandardMaterial 
-        color="#ffffff"
+        color="#00ff88"
         transparent
-        opacity={0.9}
-        wireframe
+        opacity={0.8}
+        emissive="#00ff88"
+        emissiveIntensity={0.2}
       />
     </mesh>
   );
@@ -40,12 +41,13 @@ const FloatingSphere = ({ position, scale }: { position: [number, number, number
 
   return (
     <mesh ref={meshRef} position={position} scale={scale}>
-      <sphereGeometry args={[1, 16, 16]} />
+      <sphereGeometry args={[1, 32, 32]} />
       <meshStandardMaterial 
-        color="#ffffff"
+        color="#00aaff"
         transparent
-        opacity={0.8}
-        wireframe
+        opacity={0.7}
+        emissive="#00aaff"
+        emissiveIntensity={0.1}
       />
     </mesh>
   );
@@ -53,34 +55,26 @@ const FloatingSphere = ({ position, scale }: { position: [number, number, number
 
 const Scene = () => {
   const torusElements = useMemo(() => [
-    { position: [-8, 2, -5] as [number, number, number], rotationSpeed: 0.01, scale: 1.2 },
-    { position: [8, -2, -8] as [number, number, number], rotationSpeed: -0.015, scale: 1.4 },
-    { position: [-6, -4, -10] as [number, number, number], rotationSpeed: 0.008, scale: 1 },
-    { position: [10, 4, -6] as [number, number, number], rotationSpeed: -0.012, scale: 1.3 },
-    { position: [0, 6, -12] as [number, number, number], rotationSpeed: 0.009, scale: 1.1 },
-    { position: [-10, 0, -7] as [number, number, number], rotationSpeed: -0.01, scale: 1.5 },
-    { position: [6, -6, -9] as [number, number, number], rotationSpeed: 0.011, scale: 0.9 },
-    { position: [-4, 8, -11] as [number, number, number], rotationSpeed: -0.008, scale: 1.2 },
-    { position: [12, -8, -10] as [number, number, number], rotationSpeed: 0.013, scale: 1.1 },
-    { position: [-12, 6, -8] as [number, number, number], rotationSpeed: -0.009, scale: 1.3 },
+    { position: [-3, 1, -2] as [number, number, number], rotationSpeed: 0.02, scale: 1 },
+    { position: [3, -1, -3] as [number, number, number], rotationSpeed: -0.025, scale: 1.2 },
+    { position: [-2, -2, -4] as [number, number, number], rotationSpeed: 0.015, scale: 0.8 },
+    { position: [4, 2, -2] as [number, number, number], rotationSpeed: -0.02, scale: 1.1 },
+    { position: [0, 3, -5] as [number, number, number], rotationSpeed: 0.018, scale: 0.9 },
   ], []);
 
   const sphereElements = useMemo(() => [
-    { position: [12, 1, -8] as [number, number, number], scale: 0.7 },
-    { position: [-12, -3, -6] as [number, number, number], scale: 0.6 },
-    { position: [4, 7, -10] as [number, number, number], scale: 0.8 },
-    { position: [-8, 5, -9] as [number, number, number], scale: 0.5 },
-    { position: [14, -5, -7] as [number, number, number], scale: 0.7 },
-    { position: [-14, 8, -12] as [number, number, number], scale: 0.6 },
-    { position: [8, -10, -9] as [number, number, number], scale: 0.8 },
-    { position: [-6, -8, -11] as [number, number, number], scale: 0.5 },
+    { position: [2, 0.5, -1] as [number, number, number], scale: 0.6 },
+    { position: [-4, -1, -3] as [number, number, number], scale: 0.7 },
+    { position: [1, 2.5, -4] as [number, number, number], scale: 0.5 },
+    { position: [-1, -3, -2] as [number, number, number], scale: 0.8 },
   ], []);
 
   return (
     <>
-      <ambientLight intensity={0.4} />
-      <pointLight position={[10, 10, 10]} intensity={0.6} />
-      <pointLight position={[-10, -10, -10]} intensity={0.4} />
+      <ambientLight intensity={0.6} />
+      <pointLight position={[10, 10, 10]} intensity={1} color="#ffffff" />
+      <pointLight position={[-10, -10, -10]} intensity={0.5} color="#00ff88" />
+      <directionalLight position={[5, 5, 5]} intensity={0.5} />
       
       {torusElements.map((props, index) => (
         <FloatingTorus key={`torus-${index}`} {...props} />
@@ -97,7 +91,7 @@ const ThreeBackground = () => {
   return (
     <div className="fixed inset-0 -z-10">
       <Canvas
-        camera={{ position: [0, 0, 5], fov: 75 }}
+        camera={{ position: [0, 0, 8], fov: 60 }}
         style={{ background: 'transparent' }}
         gl={{ 
           alpha: true, 
