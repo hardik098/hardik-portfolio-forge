@@ -15,40 +15,38 @@ const LoadingScreen = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       setProgress((prev) => {
-        const newProgress = prev + Math.random() * 15;
+        const newProgress = prev + Math.random() * 10 + 5;
         if (newProgress >= 100) {
           clearInterval(timer);
           return 100;
         }
         
-        // Update current step based on progress
         const stepIndex = Math.floor((newProgress / 100) * steps.length);
         setCurrentStep(Math.min(stepIndex, steps.length - 1));
         
         return newProgress;
       });
-    }, 200);
+    }, 150);
 
     return () => clearInterval(timer);
   }, []);
 
   return (
     <div className="fixed inset-0 bg-black z-50 flex items-center justify-center">
-      {/* Moving background code */}
+      {/* Simplified background code with fewer elements */}
       <div className="absolute inset-0 overflow-hidden">
-        {[...Array(200)].map((_, i) => (
+        {[...Array(50)].map((_, i) => (
           <div
             key={i}
-            className="absolute text-green-400 text-xs font-mono opacity-20 animate-pulse"
+            className="absolute text-green-400 text-xs font-mono opacity-10 will-change-transform"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 3}s`,
-              animationDuration: `${2 + Math.random() * 2}s`,
-              transform: `translateY(${Math.sin(Date.now() * 0.001 + i) * 50}px)`
+              animationDelay: `${Math.random() * 2}s`,
+              transform: `translateY(${Math.sin(i) * 20}px)`,
             }}
           >
-            {['01010', '11001', '{', '}', '()', '[]', '&&', '||', '==', '!=', '++', '--', '//', '/*', '*/', 'var', 'let', 'const', 'function', 'return'][Math.floor(Math.random() * 20)]}
+            {['01', '10', '{', '}', '++', '--', '//'][Math.floor(Math.random() * 7)]}
           </div>
         ))}
       </div>
@@ -69,7 +67,7 @@ const LoadingScreen = () => {
             {steps.map((step, index) => (
               <div key={index} className="flex items-center gap-2">
                 <span className="text-green-400">$</span>
-                <span className={`${index <= currentStep ? 'text-green-400' : 'text-gray-600'}`}>
+                <span className={`transition-colors duration-300 ${index <= currentStep ? 'text-green-400' : 'text-gray-600'}`}>
                   {step}
                 </span>
                 {index <= currentStep && (
@@ -83,7 +81,7 @@ const LoadingScreen = () => {
           <div className="mb-4">
             <div className="w-full h-3 bg-gray-700 rounded-full overflow-hidden">
               <div 
-                className="h-full bg-gradient-to-r from-blue-500 to-purple-600 transition-all duration-300 ease-out"
+                className="h-full bg-gradient-to-r from-blue-500 to-purple-600 transition-all duration-500 ease-out"
                 style={{ width: `${progress}%` }}
               />
             </div>
@@ -95,7 +93,7 @@ const LoadingScreen = () => {
           {/* Blinking cursor */}
           <div className="flex items-center">
             <span className="text-green-400">$</span>
-            <span className="text-green-400 ml-2 animate-ping">_</span>
+            <span className="text-green-400 ml-2 animate-pulse">_</span>
           </div>
         </div>
       </div>
