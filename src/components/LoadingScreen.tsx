@@ -39,13 +39,12 @@ const LoadingScreen = () => {
         {[...Array(150)].map((_, i) => (
           <div
             key={i}
-            className="absolute text-green-400 text-xs font-mono opacity-15 will-change-transform"
+            className="absolute text-green-400 text-xs font-mono opacity-15 will-change-transform animate-[float_2s_ease-in-out_infinite]"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
-              animation: `float ${2 + Math.random() * 2}s ease-in-out infinite`,
               animationDelay: `${Math.random() * 3}s`,
-              transform: `translateY(${Math.sin(Date.now() * 0.001 + i) * 30}px) translateZ(0)`, // Added translateZ for GPU acceleration
+              transform: `translateY(${Math.sin(Date.now() * 0.001 + i) * 30}px) translateZ(0)`,
             }}
           >
             {['01010', '11001', '{', '}', '()', '[]', '&&', '||', '==', '!=', '++', '--', '//', '/*', '*/', 'var', 'let', 'const', 'function', 'return'][Math.floor(Math.random() * 20)]}
@@ -54,17 +53,17 @@ const LoadingScreen = () => {
       </div>
 
       {/* Terminal window with enhanced styling */}
-      <div className="bg-gray-900/95 border border-gray-600/60 rounded-lg max-w-md w-full mx-4 shadow-2xl backdrop-blur-sm">
+      <div className="bg-gray-900/98 border border-gray-600/60 rounded-lg max-w-md w-full mx-4 shadow-2xl backdrop-blur-sm">
         {/* Terminal header with darker theme */}
-        <div className="flex items-center gap-2 bg-gray-800/90 px-4 py-3 rounded-t-lg border-b border-gray-600/50">
+        <div className="flex items-center gap-2 bg-gray-800/95 px-4 py-3 rounded-t-lg border-b border-gray-600/50">
           <div className="w-3 h-3 rounded-full bg-red-500/90 transition-all duration-300 hover:bg-red-400"></div>
           <div className="w-3 h-3 rounded-full bg-yellow-500/90 transition-all duration-300 hover:bg-yellow-400"></div>
           <div className="w-3 h-3 rounded-full bg-green-500/90 transition-all duration-300 hover:bg-green-400"></div>
-          <span className="text-gray-200 font-mono text-sm ml-2 opacity-90">terminal@hardikanawala</span>
+          <span className="text-gray-200 font-mono text-sm ml-2 opacity-95">terminal@hardikanawala</span>
         </div>
 
         {/* Terminal content with smoother animations */}
-        <div className="p-6 font-mono text-sm bg-gray-900/98">
+        <div className="p-6 font-mono text-sm bg-gray-900/99">
           <div className="space-y-3 mb-6">
             {steps.map((step, index) => (
               <div 
@@ -109,13 +108,6 @@ const LoadingScreen = () => {
           </div>
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0px) translateZ(0); }
-          50% { transform: translateY(-20px) translateZ(0); }
-        }
-      `}</style>
     </div>
   );
 };
