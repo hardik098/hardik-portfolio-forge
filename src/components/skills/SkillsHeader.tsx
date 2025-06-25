@@ -8,35 +8,33 @@ const SkillsHeader = () => {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, type: "tween" }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
       className="text-center mb-20"
     >
-      {/* Optimized Floating Icon with will-change */}
+      {/* Optimized Floating Icon */}
       <motion.div
-        className="inline-flex items-center justify-center mb-8"
-        style={{ willChange: 'transform' }}
+        className="inline-flex items-center justify-center mb-8 will-change-transform"
         animate={{
-          y: [0, -8, 0],
+          y: [0, -6, 0],
         }}
         transition={{
-          duration: 6,
+          duration: 4,
           repeat: Infinity,
           ease: "easeInOut",
-          type: "tween",
+          repeatType: "loop",
         }}
       >
         <div className="relative">
           <motion.div
-            className="absolute inset-0 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 rounded-full blur-lg opacity-40"
-            style={{ willChange: 'transform' }}
+            className="absolute inset-0 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 rounded-full blur-lg opacity-30 will-change-transform"
             animate={{
-              scale: [1, 1.2, 1],
+              scale: [1, 1.15, 1],
             }}
             transition={{
-              duration: 4,
+              duration: 3,
               repeat: Infinity,
               ease: "easeInOut",
-              type: "tween",
+              repeatType: "loop",
             }}
           />
           <div className="relative p-4 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 rounded-full">
@@ -47,9 +45,9 @@ const SkillsHeader = () => {
 
       <motion.h2
         className="text-5xl md:text-7xl font-bold text-white mb-8"
-        initial={{ opacity: 0, scale: 0.9 }}
+        initial={{ opacity: 0, scale: 0.95 }}
         whileInView={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.6, delay: 0.1, type: "tween" }}
+        transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
       >
         Technical{" "}
         <span className="relative">
@@ -57,16 +55,15 @@ const SkillsHeader = () => {
             Mastery
           </span>
           <motion.div
-            className="absolute -top-2 -right-2"
-            style={{ willChange: 'transform' }}
+            className="absolute -top-2 -right-2 will-change-transform"
             animate={{
               rotate: [0, 360],
             }}
             transition={{
-              duration: 8,
+              duration: 6,
               repeat: Infinity,
               ease: "linear",
-              type: "tween",
+              repeatType: "loop",
             }}
           >
             <Star className="w-6 h-6 text-yellow-400 fill-yellow-400" />
@@ -78,19 +75,18 @@ const SkillsHeader = () => {
         className="w-32 h-1 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 mx-auto mb-8 rounded-full relative"
         initial={{ scaleX: 0 }}
         whileInView={{ scaleX: 1 }}
-        transition={{ duration: 0.8, delay: 0.2, type: "tween" }}
+        transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
       >
         <motion.div
-          className="absolute inset-0 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 rounded-full blur-sm"
-          style={{ willChange: 'opacity' }}
+          className="absolute inset-0 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 rounded-full blur-sm will-change-auto"
           animate={{
-            opacity: [0.5, 0.8, 0.5],
+            opacity: [0.4, 0.7, 0.4],
           }}
           transition={{
-            duration: 3,
+            duration: 2.5,
             repeat: Infinity,
             ease: "easeInOut",
-            type: "tween",
+            repeatType: "loop",
           }}
         />
       </motion.div>
@@ -99,7 +95,7 @@ const SkillsHeader = () => {
         className="text-gray-300 text-xl max-w-3xl mx-auto leading-relaxed"
         initial={{ opacity: 0, y: 10 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.3, type: "tween" }}
+        transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
       >
         Crafting digital experiences with cutting-edge technologies and creative innovation
       </motion.p>

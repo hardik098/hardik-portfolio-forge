@@ -15,7 +15,7 @@ const LoadingScreen = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       setProgress((prev) => {
-        const newProgress = prev + Math.random() * 15;
+        const newProgress = prev + Math.random() * 12 + 3; // Smoother increment
         if (newProgress >= 100) {
           clearInterval(timer);
           return 100;
@@ -27,25 +27,25 @@ const LoadingScreen = () => {
         
         return newProgress;
       });
-    }, 200);
+    }, 150); // Slightly faster updates for smoother feel
 
     return () => clearInterval(timer);
   }, []);
 
   return (
     <div className="fixed inset-0 bg-black z-50 flex items-center justify-center">
-      {/* Moving background code */}
+      {/* Moving background code with optimizations */}
       <div className="absolute inset-0 overflow-hidden">
-        {[...Array(200)].map((_, i) => (
+        {[...Array(150)].map((_, i) => (
           <div
             key={i}
-            className="absolute text-green-400 text-xs font-mono opacity-20 animate-pulse"
+            className="absolute text-green-400 text-xs font-mono opacity-15 will-change-transform"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
+              animation: `float ${2 + Math.random() * 2}s ease-in-out infinite`,
               animationDelay: `${Math.random() * 3}s`,
-              animationDuration: `${2 + Math.random() * 2}s`,
-              transform: `translateY(${Math.sin(Date.now() * 0.001 + i) * 50}px)`
+              transform: `translateY(${Math.sin(Date.now() * 0.001 + i) * 30}px) translateZ(0)`, // Added translateZ for GPU acceleration
             }}
           >
             {['01010', '11001', '{', '}', '()', '[]', '&&', '||', '==', '!=', '++', '--', '//', '/*', '*/', 'var', 'let', 'const', 'function', 'return'][Math.floor(Math.random() * 20)]}
@@ -53,52 +53,69 @@ const LoadingScreen = () => {
         ))}
       </div>
 
-      {/* Terminal window */}
-      <div className="bg-gray-900 border border-gray-700 rounded-lg max-w-md w-full mx-4 shadow-2xl">
-        {/* Terminal header */}
-        <div className="flex items-center gap-2 bg-gray-800 px-4 py-3 rounded-t-lg border-b border-gray-700">
-          <div className="w-3 h-3 rounded-full bg-red-500"></div>
-          <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-          <div className="w-3 h-3 rounded-full bg-green-500"></div>
-          <span className="text-gray-300 font-mono text-sm ml-2">terminal@hardikanawala</span>
+      {/* Terminal window with enhanced styling */}
+      <div className="bg-gray-900/95 border border-gray-600/60 rounded-lg max-w-md w-full mx-4 shadow-2xl backdrop-blur-sm">
+        {/* Terminal header with darker theme */}
+        <div className="flex items-center gap-2 bg-gray-800/90 px-4 py-3 rounded-t-lg border-b border-gray-600/50">
+          <div className="w-3 h-3 rounded-full bg-red-500/90 transition-all duration-300 hover:bg-red-400"></div>
+          <div className="w-3 h-3 rounded-full bg-yellow-500/90 transition-all duration-300 hover:bg-yellow-400"></div>
+          <div className="w-3 h-3 rounded-full bg-green-500/90 transition-all duration-300 hover:bg-green-400"></div>
+          <span className="text-gray-200 font-mono text-sm ml-2 opacity-90">terminal@hardikanawala</span>
         </div>
 
-        {/* Terminal content */}
-        <div className="p-6 font-mono text-sm">
-          <div className="space-y-2 mb-6">
+        {/* Terminal content with smoother animations */}
+        <div className="p-6 font-mono text-sm bg-gray-900/98">
+          <div className="space-y-3 mb-6">
             {steps.map((step, index) => (
-              <div key={index} className="flex items-center gap-2">
-                <span className="text-green-400">$</span>
-                <span className={`${index <= currentStep ? 'text-green-400' : 'text-gray-600'}`}>
+              <div 
+                key={index} 
+                className="flex items-center gap-2 transition-all duration-500 ease-out"
+                style={{
+                  transform: index <= currentStep ? 'translateX(0)' : 'translateX(-10px)',
+                  opacity: index <= currentStep ? 1 : 0.4,
+                }}
+              >
+                <span className="text-green-400 opacity-90">$</span>
+                <span className={`transition-all duration-300 ${index <= currentStep ? 'text-green-300' : 'text-gray-500'}`}>
                   {step}
                 </span>
                 {index <= currentStep && (
-                  <span className="text-green-400 ml-2">✓</span>
+                  <span className="text-green-400 ml-2 animate-pulse">✓</span>
                 )}
               </div>
             ))}
           </div>
 
-          {/* Progress bar */}
+          {/* Enhanced progress bar */}
           <div className="mb-4">
-            <div className="w-full h-3 bg-gray-700 rounded-full overflow-hidden">
+            <div className="w-full h-3 bg-gray-700/80 rounded-full overflow-hidden">
               <div 
-                className="h-full bg-gradient-to-r from-blue-500 to-purple-600 transition-all duration-300 ease-out"
-                style={{ width: `${progress}%` }}
+                className="h-full bg-gradient-to-r from-blue-500 via-cyan-400 to-purple-600 transition-all duration-200 ease-out will-change-transform"
+                style={{ 
+                  width: `${progress}%`,
+                  transform: 'translateZ(0)', // GPU acceleration
+                }}
               />
             </div>
-            <div className="text-right mt-2 text-gray-400">
+            <div className="text-right mt-2 text-gray-300 transition-all duration-300">
               {Math.round(progress)}%
             </div>
           </div>
 
-          {/* Blinking cursor */}
+          {/* Enhanced blinking cursor */}
           <div className="flex items-center">
-            <span className="text-green-400">$</span>
-            <span className="text-green-400 ml-2 animate-ping">_</span>
+            <span className="text-green-400 opacity-90">$</span>
+            <span className="text-green-400 ml-2 animate-pulse">_</span>
           </div>
         </div>
       </div>
+
+      <style jsx>{`
+        @keyframes float {
+          0%, 100% { transform: translateY(0px) translateZ(0); }
+          50% { transform: translateY(-20px) translateZ(0); }
+        }
+      `}</style>
     </div>
   );
 };

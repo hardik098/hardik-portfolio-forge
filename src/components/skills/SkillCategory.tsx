@@ -19,43 +19,40 @@ interface SkillCategoryProps {
 const SkillCategory = ({ category, categoryIndex }: SkillCategoryProps) => {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 15 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ 
-        duration: 0.6, 
-        delay: categoryIndex * 0.1,
-        type: "tween"
+        duration: 0.4, 
+        delay: categoryIndex * 0.08,
+        ease: "easeOut"
       }}
       whileHover={{ 
-        scale: 1.02,
-        transition: { duration: 0.2, type: "tween" }
+        scale: 1.015,
+        transition: { duration: 0.15, ease: "easeOut" }
       }}
-      className="relative group cursor-pointer"
-      style={{ willChange: 'transform' }}
+      className="relative group cursor-pointer will-change-transform"
     >
       {/* Card Background with Pattern */}
-      <div className={`absolute inset-0 ${category.bgPattern} rounded-2xl`} />
+      <div className={`absolute inset-0 ${category.bgPattern} rounded-2xl will-change-auto`} />
       
       {/* Main Card with optimized transitions */}
-      <div className={`relative bg-gradient-to-br ${category.color} backdrop-blur-xl p-8 rounded-2xl border-2 ${category.borderColor} transition-all duration-300 hover:shadow-2xl hover:${category.glowColor} hover:border-opacity-90 overflow-hidden`}>
+      <div className={`relative bg-gradient-to-br ${category.color} backdrop-blur-xl p-8 rounded-2xl border-2 ${category.borderColor} transition-all duration-200 hover:shadow-2xl hover:${category.glowColor} hover:border-opacity-90 overflow-hidden`}>
         
         {/* Optimized Border Glow */}
         <motion.div
-          className={`absolute inset-0 bg-gradient-to-r ${category.color} rounded-2xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-300`}
-          style={{ willChange: 'opacity' }}
+          className={`absolute inset-0 bg-gradient-to-r ${category.color} rounded-2xl opacity-0 group-hover:opacity-15 blur-xl transition-opacity duration-200 will-change-auto`}
         />
 
         {/* Header with Icon */}
         <div className="flex items-center justify-center mb-8">
           <motion.div
-            className="relative"
+            className="relative will-change-transform"
             whileHover={{ 
-              scale: 1.05,
-              transition: { duration: 0.2, type: "tween" }
+              scale: 1.03,
+              transition: { duration: 0.15, ease: "easeOut" }
             }}
-            style={{ willChange: 'transform' }}
           >
-            <div className="relative p-4 bg-gradient-to-br from-white/25 to-white/10 backdrop-blur-sm rounded-xl border border-white/25">
+            <div className="relative p-4 bg-gradient-to-br from-white/20 to-white/5 backdrop-blur-sm rounded-xl border border-white/20">
               <category.icon className="w-10 h-10 text-white drop-shadow-lg" />
             </div>
           </motion.div>
@@ -64,10 +61,9 @@ const SkillCategory = ({ category, categoryIndex }: SkillCategoryProps) => {
         <motion.h3 
           className="text-2xl md:text-3xl font-bold text-white mb-8 text-center"
           whileHover={{ 
-            scale: 1.02,
-            transition: { duration: 0.2, type: "tween" }
+            scale: 1.01,
+            transition: { duration: 0.15, ease: "easeOut" }
           }}
-          style={{ willChange: 'transform' }}
         >
           {category.title}
         </motion.h3>
@@ -86,11 +82,10 @@ const SkillCategory = ({ category, categoryIndex }: SkillCategoryProps) => {
 
         {/* Bottom Accent with optimized animation */}
         <motion.div
-          className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${category.color} opacity-70`}
+          className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${category.color} opacity-60 will-change-transform`}
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
-          transition={{ duration: 0.6, delay: categoryIndex * 0.1, type: "tween" }}
-          style={{ willChange: 'transform' }}
+          transition={{ duration: 0.5, delay: categoryIndex * 0.08, ease: "easeOut" }}
         />
       </div>
     </motion.div>
