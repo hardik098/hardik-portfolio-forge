@@ -3,15 +3,15 @@ import React, { useMemo } from 'react';
 import { motion } from 'framer-motion';
 
 const FloatingElements = () => {
-  // Memoize floating elements to prevent recalculation on re-renders
+  // Reduced floating elements for better performance
   const floatingElements = useMemo(() => 
-    Array.from({ length: 6 }, (_, i) => ({
+    Array.from({ length: 4 }, (_, i) => ({ // Reduced from 6 to 4
       id: i,
-      size: Math.random() * 3 + 2,
+      size: Math.random() * 2 + 1.5, // Slightly smaller
       x: Math.random() * 100,
       y: Math.random() * 100,
-      duration: Math.random() * 8 + 12,
-      delay: Math.random() * 4,
+      duration: Math.random() * 6 + 8, // Reduced duration for snappier feel
+      delay: Math.random() * 2, // Reduced delay
     })), []
   );
 
@@ -22,54 +22,55 @@ const FloatingElements = () => {
         {floatingElements.map((element) => (
           <motion.div
             key={element.id}
-            className="absolute w-2 h-2 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full opacity-20"
+            className="absolute w-2 h-2 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full opacity-15" // Reduced opacity from 20 to 15
             style={{
               left: `${element.x}%`,
               top: `${element.y}%`,
               width: `${element.size}px`,
               height: `${element.size}px`,
+              willChange: 'transform, opacity'
             }}
             animate={{
-              y: [0, -50, 0],
-              x: [0, Math.sin(element.id) * 20, 0],
-              opacity: [0.1, 0.4, 0.1],
+              y: [0, -30, 0], // Reduced movement from -50 to -30
+              x: [0, Math.sin(element.id) * 15, 0], // Reduced from 20 to 15
+              opacity: [0.1, 0.3, 0.1], // Reduced peak opacity
             }}
             transition={{
               duration: element.duration,
               delay: element.delay,
               repeat: Infinity,
-              ease: "linear",
-              type: "tween", // Use tween instead of spring for better performance
+              ease: "easeInOut", // Better easing function
+              type: "tween",
             }}
           />
         ))}
       </div>
 
-      {/* Optimized Background Gradients with will-change */}
+      {/* Optimized Background Gradients */}
       <div className="absolute inset-0">
         <motion.div
-          className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-r from-blue-500/8 to-purple-500/8 rounded-full blur-3xl"
+          className="absolute top-0 left-1/4 w-80 h-80 bg-gradient-to-r from-blue-500/5 to-purple-500/5 rounded-full blur-2xl" // Reduced size and opacity
           style={{ willChange: 'transform, opacity' }}
           animate={{
-            scale: [1, 1.1, 1],
-            opacity: [0.3, 0.5, 0.3],
+            scale: [1, 1.05, 1], // Reduced scale change
+            opacity: [0.2, 0.3, 0.2], // Reduced opacity
           }}
           transition={{
-            duration: 12,
+            duration: 8, // Reduced from 12
             repeat: Infinity,
             ease: "easeInOut",
             type: "tween",
           }}
         />
         <motion.div
-          className="absolute bottom-0 right-1/4 w-96 h-96 bg-gradient-to-r from-emerald-500/8 to-cyan-500/8 rounded-full blur-3xl"
+          className="absolute bottom-0 right-1/4 w-80 h-80 bg-gradient-to-r from-emerald-500/5 to-cyan-500/5 rounded-full blur-2xl" // Reduced size and opacity
           style={{ willChange: 'transform, opacity' }}
           animate={{
-            scale: [1.1, 1, 1.1],
-            opacity: [0.5, 0.2, 0.5],
+            scale: [1.05, 1, 1.05], // Reduced scale change
+            opacity: [0.3, 0.15, 0.3], // Reduced opacity
           }}
           transition={{
-            duration: 15,
+            duration: 10, // Reduced from 15
             repeat: Infinity,
             ease: "easeInOut",
             type: "tween",

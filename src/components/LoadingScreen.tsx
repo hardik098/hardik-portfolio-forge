@@ -15,7 +15,7 @@ const LoadingScreen = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       setProgress((prev) => {
-        const newProgress = prev + Math.random() * 15;
+        const newProgress = prev + Math.random() * 12; // Smoother progress updates
         if (newProgress >= 100) {
           clearInterval(timer);
           return 100;
@@ -27,25 +27,25 @@ const LoadingScreen = () => {
         
         return newProgress;
       });
-    }, 200);
+    }, 150); // Faster updates for smoother feel
 
     return () => clearInterval(timer);
   }, []);
 
   return (
     <div className="fixed inset-0 bg-black z-50 flex items-center justify-center">
-      {/* Moving background code */}
+      {/* Moving background code - optimized */}
       <div className="absolute inset-0 overflow-hidden">
-        {[...Array(200)].map((_, i) => (
+        {[...Array(120)].map((_, i) => ( // Reduced from 200 to 120 for better performance
           <div
             key={i}
-            className="absolute text-green-400 text-xs font-mono opacity-20 animate-pulse"
+            className="absolute text-green-400 text-xs font-mono opacity-15 animate-pulse"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
               animationDelay: `${Math.random() * 3}s`,
-              animationDuration: `${2 + Math.random() * 2}s`,
-              transform: `translateY(${Math.sin(Date.now() * 0.001 + i) * 50}px)`
+              animationDuration: `${1.5 + Math.random() * 1.5}s`, // Faster animations
+              transform: `translateY(${Math.sin(Date.now() * 0.001 + i) * 30}px)` // Reduced movement
             }}
           >
             {['01010', '11001', '{', '}', '()', '[]', '&&', '||', '==', '!=', '++', '--', '//', '/*', '*/', 'var', 'let', 'const', 'function', 'return'][Math.floor(Math.random() * 20)]}
@@ -53,10 +53,10 @@ const LoadingScreen = () => {
         ))}
       </div>
 
-      {/* Terminal window */}
-      <div className="bg-gray-900 border border-gray-700 rounded-lg max-w-md w-full mx-4 shadow-2xl">
-        {/* Terminal header */}
-        <div className="flex items-center gap-2 bg-gray-800 px-4 py-3 rounded-t-lg border-b border-gray-700">
+      {/* Terminal window - Much darker background */}
+      <div className="bg-gray-950 border border-gray-800 rounded-lg max-w-md w-full mx-4 shadow-2xl"> {/* Changed from bg-gray-900 to bg-gray-950 */}
+        {/* Terminal header - Much darker */}
+        <div className="flex items-center gap-2 bg-gray-900 px-4 py-3 rounded-t-lg border-b border-gray-800"> {/* Changed from bg-gray-800 to bg-gray-900 */}
           <div className="w-3 h-3 rounded-full bg-red-500"></div>
           <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
           <div className="w-3 h-3 rounded-full bg-green-500"></div>
@@ -69,7 +69,7 @@ const LoadingScreen = () => {
             {steps.map((step, index) => (
               <div key={index} className="flex items-center gap-2">
                 <span className="text-green-400">$</span>
-                <span className={`${index <= currentStep ? 'text-green-400' : 'text-gray-600'}`}>
+                <span className={`${index <= currentStep ? 'text-green-400' : 'text-gray-600'} transition-colors duration-200`}>
                   {step}
                 </span>
                 {index <= currentStep && (
@@ -79,11 +79,11 @@ const LoadingScreen = () => {
             ))}
           </div>
 
-          {/* Progress bar */}
+          {/* Progress bar - Enhanced animation */}
           <div className="mb-4">
-            <div className="w-full h-3 bg-gray-700 rounded-full overflow-hidden">
+            <div className="w-full h-3 bg-gray-800 rounded-full overflow-hidden">
               <div 
-                className="h-full bg-gradient-to-r from-blue-500 to-purple-600 transition-all duration-300 ease-out"
+                className="h-full bg-gradient-to-r from-blue-500 to-purple-600 transition-all duration-200 ease-out"
                 style={{ width: `${progress}%` }}
               />
             </div>
@@ -92,7 +92,7 @@ const LoadingScreen = () => {
             </div>
           </div>
 
-          {/* Blinking cursor */}
+          {/* Blinking cursor - Enhanced */}
           <div className="flex items-center">
             <span className="text-green-400">$</span>
             <span className="text-green-400 ml-2 animate-ping">_</span>

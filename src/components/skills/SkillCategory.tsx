@@ -22,13 +22,13 @@ const SkillCategory = ({ category, categoryIndex }: SkillCategoryProps) => {
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ 
-        duration: 0.6, 
-        delay: categoryIndex * 0.1,
+        duration: 0.4, // Reduced from 0.6
+        delay: categoryIndex * 0.08, // Reduced from 0.1
         type: "tween"
       }}
       whileHover={{ 
-        scale: 1.02,
-        transition: { duration: 0.2, type: "tween" }
+        scale: 1.015, // Reduced from 1.02
+        transition: { duration: 0.15, type: "tween" } // Faster hover transition
       }}
       className="relative group cursor-pointer"
       style={{ willChange: 'transform' }}
@@ -37,11 +37,11 @@ const SkillCategory = ({ category, categoryIndex }: SkillCategoryProps) => {
       <div className={`absolute inset-0 ${category.bgPattern} rounded-2xl`} />
       
       {/* Main Card with optimized transitions */}
-      <div className={`relative bg-gradient-to-br ${category.color} backdrop-blur-xl p-8 rounded-2xl border-2 ${category.borderColor} transition-all duration-300 hover:shadow-2xl hover:${category.glowColor} hover:border-opacity-90 overflow-hidden`}>
+      <div className={`relative bg-gradient-to-br ${category.color} backdrop-blur-xl p-8 rounded-2xl border-2 ${category.borderColor} transition-all duration-200 hover:shadow-2xl hover:${category.glowColor} hover:border-opacity-90 overflow-hidden`}>
         
         {/* Optimized Border Glow */}
         <motion.div
-          className={`absolute inset-0 bg-gradient-to-r ${category.color} rounded-2xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-300`}
+          className={`absolute inset-0 bg-gradient-to-r ${category.color} rounded-2xl opacity-0 group-hover:opacity-15 blur-xl transition-opacity duration-200`} // Reduced opacity and duration
           style={{ willChange: 'opacity' }}
         />
 
@@ -50,12 +50,12 @@ const SkillCategory = ({ category, categoryIndex }: SkillCategoryProps) => {
           <motion.div
             className="relative"
             whileHover={{ 
-              scale: 1.05,
-              transition: { duration: 0.2, type: "tween" }
+              scale: 1.03, // Reduced from 1.05
+              transition: { duration: 0.15, type: "tween" } // Faster transition
             }}
             style={{ willChange: 'transform' }}
           >
-            <div className="relative p-4 bg-gradient-to-br from-white/25 to-white/10 backdrop-blur-sm rounded-xl border border-white/25">
+            <div className="relative p-4 bg-gradient-to-br from-white/20 to-white/8 backdrop-blur-sm rounded-xl border border-white/20"> {/* Reduced opacity */}
               <category.icon className="w-10 h-10 text-white drop-shadow-lg" />
             </div>
           </motion.div>
@@ -64,8 +64,8 @@ const SkillCategory = ({ category, categoryIndex }: SkillCategoryProps) => {
         <motion.h3 
           className="text-2xl md:text-3xl font-bold text-white mb-8 text-center"
           whileHover={{ 
-            scale: 1.02,
-            transition: { duration: 0.2, type: "tween" }
+            scale: 1.015, // Reduced from 1.02
+            transition: { duration: 0.15, type: "tween" } // Faster transition
           }}
           style={{ willChange: 'transform' }}
         >
@@ -86,10 +86,10 @@ const SkillCategory = ({ category, categoryIndex }: SkillCategoryProps) => {
 
         {/* Bottom Accent with optimized animation */}
         <motion.div
-          className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${category.color} opacity-70`}
+          className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${category.color} opacity-60`} // Reduced opacity
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
-          transition={{ duration: 0.6, delay: categoryIndex * 0.1, type: "tween" }}
+          transition={{ duration: 0.4, delay: categoryIndex * 0.08, type: "tween" }} // Reduced duration and delay
           style={{ willChange: 'transform' }}
         />
       </div>
