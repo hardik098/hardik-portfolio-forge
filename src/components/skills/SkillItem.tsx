@@ -15,33 +15,34 @@ const SkillItem = ({ skill, skillIndex, categoryIndex }: SkillItemProps) => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 8 }}
+      initial={{ opacity: 0, y: 10 }}
       whileInView={{ opacity: 1, y: 0 }}
       whileHover={{ 
-        scale: 1.03,
-        y: -1,
-        transition: { duration: 0.15, ease: "easeOut" }
+        scale: 1.05,
+        y: -2,
+        transition: { duration: 0.2, type: "tween" }
       }}
       transition={{ 
-        duration: 0.3, 
-        delay: (categoryIndex * 0.03) + (skillIndex * 0.015),
-        ease: "easeOut"
+        duration: 0.4, 
+        delay: (categoryIndex * 0.05) + (skillIndex * 0.02),
+        type: "tween"
       }}
-      className="group/skill relative will-change-transform"
+      className="group/skill relative"
+      style={{ willChange: 'transform' }}
     >
       {/* Optimized Skill Card */}
-      <div className="relative bg-slate-800/60 backdrop-blur-sm px-4 py-4 rounded-xl border border-slate-600/30 hover:border-white/30 transition-all duration-150 hover:bg-slate-700/60">
+      <div className="relative bg-slate-800/70 backdrop-blur-sm px-4 py-4 rounded-xl border border-slate-600/40 hover:border-white/40 transition-all duration-200 hover:bg-slate-700/70">
         <div className="flex items-center justify-center gap-3">
           <motion.div
             whileHover={{ 
-              rotate: 90,
-              transition: { duration: 0.2, ease: "easeOut" }
+              rotate: 180,
+              transition: { duration: 0.3, type: "tween" }
             }}
-            className="will-change-transform"
+            style={{ willChange: 'transform' }}
           >
-            <SkillIcon className="w-5 h-5 text-white group-hover/skill:text-cyan-300 transition-colors duration-150" />
+            <SkillIcon className="w-5 h-5 text-white group-hover/skill:text-cyan-300 transition-colors duration-200" />
           </motion.div>
-          <span className="text-gray-200 font-medium text-sm group-hover/skill:text-white transition-colors duration-150">
+          <span className="text-gray-200 font-medium text-sm group-hover/skill:text-white transition-colors duration-200">
             {skill}
           </span>
         </div>
