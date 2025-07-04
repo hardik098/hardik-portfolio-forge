@@ -11,17 +11,21 @@ const SkillsHeader = () => {
       transition={{ duration: 0.4, type: "tween" }} // Reduced from 0.6
       className="text-center mb-20"
     >
-      {/* Optimized Floating Icon */}
+      {/* Ultra-optimized Floating Icon */}
       <motion.div
         className="inline-flex items-center justify-center mb-8"
-        style={{ willChange: 'transform' }}
+        style={{ 
+          willChange: 'transform',
+          transform: 'translateZ(0)',
+          contain: 'layout style paint'
+        }}
         animate={{
-          y: [0, -6, 0], // Reduced from -8
+          y: [0, -4, 0],
         }}
         transition={{
-          duration: 4, // Reduced from 6
+          duration: 3,
           repeat: Infinity,
-          ease: "easeInOut",
+          ease: "linear",
           type: "tween",
         }}
       >

@@ -3,43 +3,45 @@ import React, { useMemo } from 'react';
 import { motion } from 'framer-motion';
 
 const FloatingElements = () => {
-  // Reduced floating elements for better performance
+  // Heavily optimized floating elements
   const floatingElements = useMemo(() => 
-    Array.from({ length: 4 }, (_, i) => ({ // Reduced from 6 to 4
+    Array.from({ length: 3 }, (_, i) => ({
       id: i,
-      size: Math.random() * 2 + 1.5, // Slightly smaller
+      size: Math.random() * 1.5 + 1,
       x: Math.random() * 100,
       y: Math.random() * 100,
-      duration: Math.random() * 6 + 8, // Reduced duration for snappier feel
-      delay: Math.random() * 2, // Reduced delay
+      duration: Math.random() * 4 + 6,
+      delay: Math.random() * 1,
     })), []
   );
 
   return (
     <>
-      {/* Optimized Floating Background Elements */}
+      {/* Ultra-optimized Floating Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         {floatingElements.map((element) => (
           <motion.div
             key={element.id}
-            className="absolute w-2 h-2 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full opacity-15" // Reduced opacity from 20 to 15
+            className="absolute w-2 h-2 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full opacity-10"
             style={{
               left: `${element.x}%`,
               top: `${element.y}%`,
               width: `${element.size}px`,
               height: `${element.size}px`,
-              willChange: 'transform, opacity'
+              willChange: 'transform',
+              transform: 'translateZ(0)',
+              contain: 'layout style paint'
             }}
             animate={{
-              y: [0, -30, 0], // Reduced movement from -50 to -30
-              x: [0, Math.sin(element.id) * 15, 0], // Reduced from 20 to 15
-              opacity: [0.1, 0.3, 0.1], // Reduced peak opacity
+              y: [0, -20, 0],
+              x: [0, Math.sin(element.id) * 10, 0],
+              opacity: [0.05, 0.15, 0.05],
             }}
             transition={{
               duration: element.duration,
               delay: element.delay,
               repeat: Infinity,
-              ease: "easeInOut", // Better easing function
+              ease: "linear",
               type: "tween",
             }}
           />

@@ -22,16 +22,21 @@ const SkillCategory = ({ category, categoryIndex }: SkillCategoryProps) => {
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ 
-        duration: 0.4, // Reduced from 0.6
-        delay: categoryIndex * 0.08, // Reduced from 0.1
-        type: "tween"
+        duration: 0.3,
+        delay: categoryIndex * 0.05,
+        type: "tween",
+        ease: "easeOut"
       }}
       whileHover={{ 
-        scale: 1.015, // Reduced from 1.02
-        transition: { duration: 0.15, type: "tween" } // Faster hover transition
+        scale: 1.01,
+        transition: { duration: 0.1, type: "tween", ease: "easeOut" }
       }}
       className="relative group cursor-pointer"
-      style={{ willChange: 'transform' }}
+      style={{ 
+        willChange: 'transform',
+        transform: 'translateZ(0)',
+        contain: 'layout style paint'
+      }}
     >
       {/* Card Background with Pattern */}
       <div className={`absolute inset-0 ${category.bgPattern} rounded-2xl`} />

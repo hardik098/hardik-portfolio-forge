@@ -8,7 +8,15 @@ import SkillsFooter from './SkillsFooter';
 
 const SkillsSection = () => {
   return (
-    <section id="skills" className="py-20 px-4 bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 relative overflow-hidden">
+    <section 
+      id="skills" 
+      className="py-20 px-4 bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 relative overflow-hidden"
+      style={{ 
+        contain: 'layout style paint',
+        willChange: 'transform',
+        transform: 'translateZ(0)' 
+      }}
+    >
       <FloatingElements />
 
       <div className="max-w-6xl mx-auto relative z-10">
