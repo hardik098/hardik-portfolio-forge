@@ -36,21 +36,6 @@
 
     --radius: 0.5rem;
 
-    /* Enhanced Design System */
-    --gradient-primary: linear-gradient(135deg, hsl(164 76% 49%), hsl(186 86% 53%));
-    --gradient-secondary: linear-gradient(135deg, hsl(279 75% 65%), hsl(302 84% 61%));
-    --gradient-accent: linear-gradient(135deg, hsl(32 98% 56%), hsl(14 91% 60%));
-    --gradient-success: linear-gradient(135deg, hsl(142 76% 36%), hsl(158 64% 52%));
-    
-    --shadow-glow: 0 0 30px hsl(164 76% 49% / 0.3);
-    --shadow-glow-hover: 0 0 40px hsl(164 76% 49% / 0.5);
-    --shadow-card: 0 25px 50px -12px hsl(0 0% 0% / 0.25);
-    --shadow-elevated: 0 35px 60px -12px hsl(0 0% 0% / 0.4);
-
-    --animation-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    --animation-smooth: cubic-bezier(0.4, 0, 0.2, 1);
-    --animation-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
-
     --sidebar-background: 0 0% 98%;
 
     --sidebar-foreground: 240 5.3% 26.1%;

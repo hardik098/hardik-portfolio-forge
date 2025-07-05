@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Github, Linkedin, MapPin, Phone, Code, Terminal } from 'lucide-react';
-import ResumeDownload from './ResumeDownload';
 
 const Hero = () => {
   const codeSnippet = `const developer = {
@@ -164,16 +163,6 @@ const Hero = () => {
               <Phone size={20} />
               <span>Contact</span>
             </a>
-          </motion.div>
-          
-          {/* Resume Download Button */}
-          <motion.div
-            className="mt-6"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.4 }}
-          >
-            <ResumeDownload />
           </motion.div>
         </motion.div>
 
