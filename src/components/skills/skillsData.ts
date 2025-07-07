@@ -21,54 +21,59 @@ import {
 } from 'lucide-react';
 
 export const skillIcons: Record<string, any> = {
-  "React.js": Code2,
-  "TypeScript": FileCode,
-  "HTML5": Code,
-  "CSS3": Palette,
-  "JavaScript": Braces,
-  "Tailwind CSS": Wind,
-  ".NET Core": Layers,
+  // Programming Languages
   "C#": Code2,
-  "Node.js": Server,
-  "Express.js": Zap,
-  "RESTful APIs": Globe,
-  "GraphQL": Database,
-  "SQL Server": Database,
-  "MongoDB": Database,
+  "C": Code,
+  "Java": FileCode,
+  "JavaScript": Braces,
+  "Python": Code2,
+  "PHP": Code,
+  // Web Technologies
+  ".NET Core WC": Layers,
+  "ReactJS": Code2,
+  "NodeJS": Server,
+  // Database
+  "MySQL": Database,
   "PostgreSQL": Database,
-  "Azure": Cloud,
-  "AWS": Cloud,
-  "Docker": Layers,
-  "Git": GitBranch,
-  "Visual Studio": Monitor,
-  "VS Code": Terminal,
+  "MongoDB": Database,
+  "SQL Server": Database,
+  // Architecture and Pattern
+  "MVC": Layers,
+  "REST": Globe,
+  "Vanilla CQRS with .NET": Settings,
+  // Other Tools and Technologies
+  "GitHub": GitBranch,
+  "PowerBI": Monitor,
   "Postman": Mail,
-  "Jenkins": Settings,
-  "Agile": Users
+  // AI IDEs and Tools
+  "Cursor": Terminal,
+  "TREA": Code2,
+  "Windsurf": Wind,
+  "GitHub Copilot": Users
 };
 
 export const skillCategories = [
   {
-    title: "Frontend Development",
-    skills: ["React.js", "TypeScript", "HTML5", "CSS3", "JavaScript", "Tailwind CSS"],
+    title: "Programming Languages",
+    skills: ["C#", "C", "Java", "JavaScript", "Python", "PHP"],
     color: "from-blue-500/20 via-purple-500/20 to-pink-500/20",
     borderColor: "border-blue-500/50",
     glowColor: "shadow-blue-500/25",
-    icon: Code,
+    icon: Code2,
     bgPattern: "bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-600/10 via-purple-600/5 to-transparent"
   },
   {
-    title: "Backend Development", 
-    skills: [".NET Core", "C#", "Node.js", "Express.js", "RESTful APIs", "GraphQL"],
+    title: "Web Technologies",
+    skills: [".NET Core WC", "ReactJS", "NodeJS"],
     color: "from-emerald-500/20 via-teal-500/20 to-cyan-500/20",
     borderColor: "border-emerald-500/50",
     glowColor: "shadow-emerald-500/25",
-    icon: Settings,
+    icon: Globe,
     bgPattern: "bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-emerald-600/10 via-teal-600/5 to-transparent"
   },
   {
-    title: "Database & Cloud",
-    skills: ["SQL Server", "MongoDB", "PostgreSQL", "Azure", "AWS", "Docker"],
+    title: "Database",
+    skills: ["MySQL", "PostgreSQL", "MongoDB", "SQL Server"],
     color: "from-orange-500/20 via-red-500/20 to-pink-500/20",
     borderColor: "border-orange-500/50",
     glowColor: "shadow-orange-500/25",
@@ -76,12 +81,30 @@ export const skillCategories = [
     bgPattern: "bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-orange-600/10 via-red-600/5 to-transparent"
   },
   {
-    title: "Tools & Others",
-    skills: ["Git", "Visual Studio", "VS Code", "Postman", "Jenkins", "Agile"],
+    title: "Architecture and Pattern",
+    skills: ["MVC", "REST", "Vanilla CQRS with .NET"],
     color: "from-violet-500/20 via-purple-500/20 to-indigo-500/20",
     borderColor: "border-violet-500/50",
     glowColor: "shadow-violet-500/25",
-    icon: Cloud,
+    icon: Layers,
     bgPattern: "bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-violet-600/10 via-purple-600/5 to-transparent"
+  },
+  {
+    title: "Other Tools and Technologies",
+    skills: ["GitHub", "PowerBI", "Postman"],
+    color: "from-cyan-500/20 via-blue-500/20 to-indigo-500/20",
+    borderColor: "border-cyan-500/50",
+    glowColor: "shadow-cyan-500/25",
+    icon: Settings,
+    bgPattern: "bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-cyan-600/10 via-blue-600/5 to-transparent"
+  },
+  {
+    title: "AI IDEs and Tools",
+    skills: ["Cursor", "TREA", "Windsurf", "GitHub Copilot"],
+    color: "from-pink-500/20 via-rose-500/20 to-red-500/20",
+    borderColor: "border-pink-500/50",
+    glowColor: "shadow-pink-500/25",
+    icon: Terminal,
+    bgPattern: "bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-pink-600/10 via-rose-600/5 to-transparent"
   }
 ];
