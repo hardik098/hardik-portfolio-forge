@@ -23,13 +23,11 @@ import {
 export const skillIcons: Record<string, any> = {
   // Programming Languages
   "C#": Code2,
-  "C": Code,
   "Java": FileCode,
   "JavaScript": Braces,
   "Python": Code2,
-  "PHP": Code,
   // Web Technologies
-  ".NET Core WC": Layers,
+  ".NET Core MVC": Layers,
   "ReactJS": Code2,
   "NodeJS": Server,
   // Database
@@ -55,7 +53,7 @@ export const skillIcons: Record<string, any> = {
 export const skillCategories = [
   {
     title: "Programming Languages",
-    skills: ["C#", "C", "Java", "JavaScript", "Python", "PHP"],
+    skills: ["C#", "Java", "JavaScript", "Python"],
     color: "from-blue-500/20 via-purple-500/20 to-pink-500/20",
     borderColor: "border-blue-500/50",
     glowColor: "shadow-blue-500/25",
@@ -64,7 +62,7 @@ export const skillCategories = [
   },
   {
     title: "Web Technologies",
-    skills: [".NET Core WC", "ReactJS", "NodeJS"],
+    skills: [".NET Core MVC", "ReactJS", "NodeJS"],
     color: "from-emerald-500/20 via-teal-500/20 to-cyan-500/20",
     borderColor: "border-emerald-500/50",
     glowColor: "shadow-emerald-500/25",
