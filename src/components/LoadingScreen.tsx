@@ -34,25 +34,6 @@ const LoadingScreen = () => {
 
   return (
     <div className="fixed inset-0 bg-black z-50 flex items-center justify-center">
-      {/* Moving background code - optimized */}
-      <div className="absolute inset-0 overflow-hidden">
-        {[...Array(120)].map((_, i) => ( // Reduced from 200 to 120 for better performance
-          <div
-            key={i}
-            className="absolute text-green-400 text-xs font-mono opacity-15 animate-pulse"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 3}s`,
-              animationDuration: `${1.5 + Math.random() * 1.5}s`, // Faster animations
-              transform: `translateY(${Math.sin(Date.now() * 0.001 + i) * 30}px)` // Reduced movement
-            }}
-          >
-            {['01010', '11001', '{', '}', '()', '[]', '&&', '||', '==', '!=', '++', '--', '//', '/*', '*/', 'var', 'let', 'const', 'function', 'return'][Math.floor(Math.random() * 20)]}
-          </div>
-        ))}
-      </div>
-
       {/* Terminal window - Much darker background */}
       <div className="bg-gray-950 border border-gray-800 rounded-lg max-w-md w-full mx-4 shadow-2xl"> {/* Changed from bg-gray-900 to bg-gray-950 */}
         {/* Terminal header - Much darker */}
