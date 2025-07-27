@@ -1,27 +1,25 @@
 
-import React, { useState, useEffect, lazy, Suspense } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import LoadingScreen from '../components/LoadingScreen';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
 import About from '../components/About';
+import Experience from '../components/Experience';
+import Projects from '../components/Projects';
+import Skills from '../components/Skills';
+import Contact from '../components/Contact';
 import AnimatedBackground from '../components/AnimatedBackground';
 import { Toaster } from '@/components/ui/toaster';
-
-// Lazy load heavy components for better performance
-const Experience = lazy(() => import('../components/Experience'));
-const Projects = lazy(() => import('../components/Projects'));
-const Skills = lazy(() => import('../components/Skills'));
-const Contact = lazy(() => import('../components/Contact'));
 
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Optimized loading time for smoother experience
+    // Simulate loading time
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 1500); // Reduced from 2.5s to 1.5s
+    }, 2500); // Reduced loading time for smoother experience
 
     return () => clearTimeout(timer);
   }, []);
@@ -40,58 +38,50 @@ const Index = () => {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.4 }}
+          transition={{ duration: 0.6 }}
         >
           <Hero />
         </motion.div>
         
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
+          transition={{ duration: 0.6 }}
         >
           <About />
         </motion.div>
         
-        <Suspense fallback={<div className="flex justify-center py-20"><div className="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-400"></div></div>}>
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.4 }}
-          >
-            <Experience />
-          </motion.div>
-        </Suspense>
+        <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <Experience />
+        </motion.div>
         
-        <Suspense fallback={<div className="flex justify-center py-20"><div className="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-400"></div></div>}>
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.4 }}
-          >
-            <Projects />
-          </motion.div>
-        </Suspense>
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6 }}
+        >
+          <Projects />
+        </motion.div>
         
-        <Suspense fallback={<div className="flex justify-center py-20"><div className="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-400"></div></div>}>
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-          >
-            <Skills />
-          </motion.div>
-        </Suspense>
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <Skills />
+        </motion.div>
         
-        <Suspense fallback={<div className="flex justify-center py-20"><div className="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-400"></div></div>}>
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.4 }}
-          >
-            <Contact />
-          </motion.div>
-        </Suspense>
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.6 }}
+        >
+          <Contact />
+        </motion.div>
       </div>
       
       <Toaster />

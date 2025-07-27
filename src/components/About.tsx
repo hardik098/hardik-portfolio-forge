@@ -1,7 +1,7 @@
-import React, { memo } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 
-const About = memo(() => {
+const About = () => {
   return (
     <section id="about" className="py-20 px-4 bg-transparent relative">
       <div className="max-w-6xl mx-auto">
@@ -72,8 +72,6 @@ const About = memo(() => {
       </div>
     </section>
   );
-});
-
-About.displayName = 'About';
+};
 
 export default About;

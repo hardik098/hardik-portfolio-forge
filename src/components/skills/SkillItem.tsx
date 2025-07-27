@@ -1,5 +1,5 @@
 
-import React, { memo } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { Code } from 'lucide-react';
 import { skillIcons } from './skillsData';
@@ -10,7 +10,7 @@ interface SkillItemProps {
   categoryIndex: number;
 }
 
-const SkillItem = memo(({ skill, skillIndex, categoryIndex }: SkillItemProps) => {
+const SkillItem = ({ skill, skillIndex, categoryIndex }: SkillItemProps) => {
   const SkillIcon = skillIcons[skill] || Code;
 
   return (
@@ -54,8 +54,6 @@ const SkillItem = memo(({ skill, skillIndex, categoryIndex }: SkillItemProps) =>
       </div>
     </motion.div>
   );
-});
-
-SkillItem.displayName = 'SkillItem';
+};
 
 export default SkillItem;

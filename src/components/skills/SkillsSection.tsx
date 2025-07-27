@@ -1,12 +1,12 @@
 
-import React, { memo } from 'react';
+import React from 'react';
 import { skillCategories } from './skillsData';
 import FloatingElements from './FloatingElements';
 import SkillsHeader from './SkillsHeader';
 import SkillCategory from './SkillCategory';
 import SkillsFooter from './SkillsFooter';
 
-const SkillsSection = memo(() => {
+const SkillsSection = () => {
   return (
     <section 
       id="skills" 
@@ -36,8 +36,6 @@ const SkillsSection = memo(() => {
       </div>
     </section>
   );
-});
-
-SkillsSection.displayName = 'SkillsSection';
+};
 
 export default SkillsSection;

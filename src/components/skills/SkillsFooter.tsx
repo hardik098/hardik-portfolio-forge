@@ -1,9 +1,9 @@
 
-import React, { memo } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { Zap } from 'lucide-react';
 
-const SkillsFooter = memo(() => {
+const SkillsFooter = () => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -31,8 +31,6 @@ const SkillsFooter = memo(() => {
       </motion.div>
     </motion.div>
   );
-});
-
-SkillsFooter.displayName = 'SkillsFooter';
+};
 
 export default SkillsFooter;

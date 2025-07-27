@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useCallback, memo } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
-const Navbar = memo(() => {
+const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
@@ -66,68 +66,55 @@ const Navbar = memo(() => {
 
   const currentColors = sectionColors[activeSection as keyof typeof sectionColors] || sectionColors.home;
 
-  // Throttled scroll handler for better performance
-  const handleScroll = useCallback(() => {
-    setIsScrolled(window.scrollY > 50);
-    
-    // Only track sections on home page
-    if (location.pathname !== '/') return;
-    
-    // Get all sections
-    const sections = ['home', 'about', 'experience', 'projects', 'skills', 'contact'];
-    const scrollPosition = window.scrollY + 100; // Offset for navbar height
-    
-    // If at top of page, always show home as active
-    if (window.scrollY < 50) {
-      setActiveSection('home');
-      return;
-    }
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+      
+      // Only track sections on home page
+      if (location.pathname !== '/') return;
+      
+      // Get all sections
+      const sections = ['home', 'about', 'experience', 'projects', 'skills', 'contact'];
+      const scrollPosition = window.scrollY + 100; // Offset for navbar height
+      
+      // If at top of page, always show home as active
+      if (window.scrollY < 50) {
+        setActiveSection('home');
+        return;
+      }
 
-    let currentSection = 'home';
-    
-    // Check each section to find which one is currently in view
-    for (const sectionId of sections) {
-      const element = document.getElementById(sectionId);
-      if (element) {
-        const rect = element.getBoundingClientRect();
-        const elementTop = window.scrollY + rect.top;
-        const elementBottom = elementTop + element.offsetHeight;
-        
-        // Check if the section is currently visible in viewport
-        if (scrollPosition >= elementTop && scrollPosition < elementBottom) {
-          currentSection = sectionId;
-          break;
+      let currentSection = 'home';
+      
+      // Check each section to find which one is currently in view
+      for (const sectionId of sections) {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          const elementTop = window.scrollY + rect.top;
+          const elementBottom = elementTop + element.offsetHeight;
+          
+          // Check if the section is currently visible in viewport
+          if (scrollPosition >= elementTop && scrollPosition < elementBottom) {
+            currentSection = sectionId;
+            break;
+          }
         }
       }
-    }
-    
-    // If we're at the bottom of the page, make sure contact is active
-    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
-      currentSection = 'contact';
-    }
-    
-    setActiveSection(currentSection);
-  }, [location.pathname]);
-
-  useEffect(() => {
-    // Throttled scroll handler for better performance
-    let ticking = false;
-    const throttledScroll = () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          handleScroll();
-          ticking = false;
-        });
-        ticking = true;
+      
+      // If we're at the bottom of the page, make sure contact is active
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
+        currentSection = 'contact';
       }
+      
+      setActiveSection(currentSection);
     };
     
-    window.addEventListener('scroll', throttledScroll, { passive: true });
+    window.addEventListener('scroll', handleScroll);
     handleScroll(); // Call once to set initial state
-    return () => window.removeEventListener('scroll', throttledScroll);
-  }, [handleScroll]);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [location.pathname]);
 
-  const handleNavigation = useCallback((item: typeof navItems[0]) => {
+  const handleNavigation = (item: typeof navItems[0]) => {
     if (item.type === 'navigate') {
       navigate(item.href);
     } else {
@@ -141,9 +128,9 @@ const Navbar = memo(() => {
       }
     }
     setIsMobileMenuOpen(false);
-  }, [location.pathname, navigate]);
+  };
 
-  const scrollToSection = useCallback((href: string) => {
+  const scrollToSection = (href: string) => {
     const sectionId = href.substring(1);
     const element = document.getElementById(sectionId);
     if (element) {
@@ -155,7 +142,7 @@ const Navbar = memo(() => {
       const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
       window.scrollTo({ top: y, behavior: 'smooth' });
     }
-  }, [setActiveSection]);
+  };
 
   return (
     <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${
@@ -237,8 +224,6 @@ const Navbar = memo(() => {
       )}
     </nav>
   );
-});
-
-Navbar.displayName = 'Navbar';
+};
 
 export default Navbar;

@@ -1,5 +1,5 @@
 
-import React, { memo } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import SkillItem from './SkillItem';
 
@@ -16,7 +16,7 @@ interface SkillCategoryProps {
   categoryIndex: number;
 }
 
-const SkillCategory = memo(({ category, categoryIndex }: SkillCategoryProps) => {
+const SkillCategory = ({ category, categoryIndex }: SkillCategoryProps) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -100,8 +100,6 @@ const SkillCategory = memo(({ category, categoryIndex }: SkillCategoryProps) => 
       </div>
     </motion.div>
   );
-});
-
-SkillCategory.displayName = 'SkillCategory';
+};
 
 export default SkillCategory;
