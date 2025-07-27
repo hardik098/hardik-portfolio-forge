@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { motion } from 'framer-motion';
 import { Github, Linkedin, MapPin, Phone, Code, Terminal } from 'lucide-react';
 
-const Hero = () => {
+const Hero = memo(() => {
   const codeSnippet = `const developer = {
   name: "Hardik Anawala",
   role: "Software Developer",
@@ -31,16 +31,16 @@ const Hero = () => {
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center z-10 relative">
         {/* Left side - Text content */}
         <motion.div 
-          className="text-left"
-          initial={{ opacity: 0, x: -50 }}
+          className="text-left will-change-transform"
+          initial={{ opacity: 0, x: -30 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
         >
           <motion.div 
-            className="flex items-center gap-3 mb-6"
-            initial={{ opacity: 0, y: 20 }}
+            className="flex items-center gap-3 mb-6 will-change-transform"
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
+            transition={{ delay: 0.1, duration: 0.4 }}
           >
             <Terminal className="text-emerald-400" size={32} />
             <span className="text-emerald-400 font-mono text-lg">~/portfolio</span>
@@ -56,12 +56,11 @@ const Hero = () => {
           </motion.p>
           
           <motion.h1 
-            className="text-5xl md:text-7xl font-bold text-white mb-6"
+            className="text-5xl md:text-7xl font-bold text-white mb-6 will-change-transform"
             variants={titleVariants}
             initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            animate="visible"
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
           >
             <motion.span 
               className="bg-gradient-to-r from-emerald-400 via-cyan-500 to-purple-500 bg-clip-text text-transparent inline-block overflow-hidden whitespace-nowrap"
@@ -168,10 +167,10 @@ const Hero = () => {
 
         {/* Right side - Code snippet */}
         <motion.div 
-          className="lg:flex justify-center hidden"
-          initial={{ opacity: 0, x: 50 }}
+          className="lg:flex justify-center hidden will-change-transform"
+          initial={{ opacity: 0, x: 30 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1, delay: 0.5 }}
+          transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
         >
           <motion.div 
             className="bg-gray-900/80 backdrop-blur-sm border border-emerald-500/30 rounded-xl p-6 font-mono text-sm max-w-md hover:border-emerald-500/50 transition-colors"
@@ -212,29 +211,13 @@ const Hero = () => {
         </motion.div>
       </div>
 
-      {/* Floating elements */}
-      <motion.div 
-        className="absolute top-20 right-20 w-20 h-20 border border-emerald-500/30 rounded-lg"
-        animate={{ 
-          rotate: 360,
-          scale: [1, 1.1, 1]
-        }}
-        transition={{ 
-          rotate: { duration: 20, repeat: Infinity, ease: "linear" },
-          scale: { duration: 2, repeat: Infinity }
-        }}
-      />
-      
-      <motion.div 
-        className="absolute bottom-40 left-20 w-16 h-16 border border-cyan-500/30 rounded-full"
-        animate={{ 
-          y: [-10, 10, -10],
-          opacity: [0.3, 0.8, 0.3]
-        }}
-        transition={{ duration: 3, repeat: Infinity }}
-      />
+      {/* Simplified floating elements for performance */}
+      <div className="absolute top-20 right-20 w-20 h-20 border border-emerald-500/20 rounded-lg animate-spin" style={{ animationDuration: '30s' }} />
+      <div className="absolute bottom-40 left-20 w-16 h-16 border border-cyan-500/20 rounded-full animate-pulse" style={{ animationDuration: '4s' }} />
     </section>
   );
-};
+});
+
+Hero.displayName = 'Hero';
 
 export default Hero;

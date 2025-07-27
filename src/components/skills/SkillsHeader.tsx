@@ -1,9 +1,9 @@
 
-import React from 'react';
+import React, { memo } from 'react';
 import { motion } from 'framer-motion';
 import { Sparkles, Star } from 'lucide-react';
 
-const SkillsHeader = () => {
+const SkillsHeader = memo(() => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -109,6 +109,8 @@ const SkillsHeader = () => {
       </motion.p>
     </motion.div>
   );
-};
+});
+
+SkillsHeader.displayName = 'SkillsHeader';
 
 export default SkillsHeader;

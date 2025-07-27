@@ -15,7 +15,7 @@ const LoadingScreen = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       setProgress((prev) => {
-        const newProgress = prev + Math.random() * 12; // Smoother progress updates
+        const newProgress = prev + Math.random() * 15; // Faster progress updates
         if (newProgress >= 100) {
           clearInterval(timer);
           return 100;
@@ -27,28 +27,27 @@ const LoadingScreen = () => {
         
         return newProgress;
       });
-    }, 150); // Faster updates for smoother feel
+    }, 100); // Faster updates for smoother feel
 
     return () => clearInterval(timer);
   }, []);
 
   return (
     <div className="fixed inset-0 bg-black z-50 flex items-center justify-center">
-      {/* Moving background code - optimized */}
+      {/* Optimized background with minimal elements */}
       <div className="absolute inset-0 overflow-hidden">
-        {[...Array(120)].map((_, i) => ( // Reduced from 200 to 120 for better performance
+        {[...Array(30)].map((_, i) => ( // Reduced from 120 to 30 for better performance
           <div
             key={i}
-            className="absolute text-green-400 text-xs font-mono opacity-15 animate-pulse"
+            className="absolute text-green-400/30 text-xs font-mono animate-pulse"
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 3}s`,
-              animationDuration: `${1.5 + Math.random() * 1.5}s`, // Faster animations
-              transform: `translateY(${Math.sin(Date.now() * 0.001 + i) * 30}px)` // Reduced movement
+              left: `${(i * 3.33) % 100}%`,
+              top: `${(i * 7) % 100}%`,
+              animationDelay: `${(i * 0.1) % 3}s`,
+              animationDuration: '2s'
             }}
           >
-            {['01010', '11001', '{', '}', '()', '[]', '&&', '||', '==', '!=', '++', '--', '//', '/*', '*/', 'var', 'let', 'const', 'function', 'return'][Math.floor(Math.random() * 20)]}
+            {['01', '{}', '()', '++', '--', 'var', 'let'][i % 7]}
           </div>
         ))}
       </div>
